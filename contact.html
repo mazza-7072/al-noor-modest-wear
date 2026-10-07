@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact – Al-Noor Modest Wear</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#c9973a;--gold-light:#e8c46a;--gold-pale:#f5e6c0;--gold-subtle:#fdf6e8;
+  --dark:#0d0d0d;--dark2:#1a1612;--cream:#f8f4ee;--text:#2a2318;--muted:#7a6b55;--white:#fff;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-lg:0 12px 40px rgba(0,0,0,0.14);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--text);font-family:'Raleway',sans-serif;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+.top-bar{background:var(--dark2);color:var(--gold-light);font-size:11.5px;text-align:center;padding:7px 20px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,151,58,0.18);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;transition:box-shadow .3s;}
+.navbar.scrolled{box-shadow:0 4px 32px rgba(0,0,0,0.10);}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0;}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px rgba(201,151,58,.35);}
+.logo-icon svg{width:22px;height:22px;fill:#fff;}
+ .logo-img{
+  height:42px;
+  width:auto;
+  display:block;
+}
+.logo-text .name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--dark2);display:block;line-height:1.1;}
+.logo-text .tagline{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;}
+.nav-links{display:flex;align-items:center;gap:2px;flex:1;justify-content:center;margin:0 24px;}
+.nav-links a{font-size:12.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;padding:6px 13px;border-radius:30px;transition:all .22s;white-space:nowrap;}
+.nav-links a:hover{background:var(--gold-pale);color:var(--gold);}
+.nav-links a.active{background:var(--gold);color:#fff;box-shadow:0 2px 12px rgba(201,151,58,.4);}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--text);font-size:17px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.icon-btn:hover{background:var(--gold-pale);color:var(--gold);}
+.cart-btn{background:var(--gold)!important;color:#fff!important;position:relative;}
+.cart-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--dark2);color:#fff;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid var(--gold-pale);padding:16px 28px;gap:4px;position:absolute;top:68px;left:0;right:0;z-index:999;box-shadow:0 10px 30px rgba(0,0,0,.1);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:14px;font-weight:600;padding:11px 0;border-bottom:1px solid var(--gold-pale);letter-spacing:.4px;transition:color .2s;}
+.mobile-menu a:hover{color:var(--gold);}
+.cat-page-hero{background:linear-gradient(110deg,var(--dark2) 55%,#2a1f0f 100%);padding:44px 56px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.cat-page-hero-text .breadcrumb{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:10px;}
+.cat-page-hero-text .breadcrumb a{color:rgba(255,255,255,.4);}
+.cat-page-hero-text .breadcrumb a:hover{color:var(--gold-light);}
+.cat-page-hero-text .breadcrumb span{color:var(--gold);}
+.cat-page-hero-text h1{font-family:'Playfair Display',serif;font-size:40px;color:#fff;line-height:1.1;margin-bottom:8px;}
+.cat-page-hero-text h1 em{color:var(--gold-light);font-style:italic;}
+.cat-page-hero-text p{font-size:14px;color:rgba(255,255,255,.65);max-width:420px;line-height:1.7;}
+.cat-page-hero-stats{display:flex;gap:30px;}
+.stat-item{text-align:center;}
+.stat-item .num{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold-light);}
+.stat-item .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+
+.contact-wrap{padding:44px 56px 70px;display:grid;grid-template-columns:1fr 1fr;gap:32px;background:#fff;max-width:1200px;margin:0 auto;}
+.contact-wrap h3{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:20px;color:var(--dark2);}
+.contact-wrap h3 em{color:var(--gold);font-style:italic;}
+.contact-form{display:flex;flex-direction:column;gap:14px;}
+.contact-form input,.contact-form textarea{padding:13px 16px;border:1.5px solid var(--gold-pale);border-radius:8px;font-family:'Raleway',sans-serif;font-size:13.5px;color:var(--text);background:var(--cream);}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--gold);}
+.contact-form textarea{resize:vertical;}
+.contact-form button{align-self:flex-start;padding:12px 28px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#000;border:none;cursor:pointer;border-radius:5px;font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:.3s;}
+.contact-form button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,151,58,.4);}
+
+.info-col{display:flex;flex-direction:column;gap:20px;}
+.store-card{background:var(--gold-subtle);border-radius:12px;padding:24px;border:1.5px solid var(--gold-pale);}
+.store-card .ic{font-size:28px;margin-bottom:10px;}
+.store-card h4{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:6px;color:var(--dark2);}
+.store-card p{font-size:13.5px;color:var(--muted);line-height:1.7;}
+.wa-link{display:flex;align-items:center;gap:14px;background:#25D366;color:#fff;padding:18px 22px;border-radius:12px;font-weight:700;font-size:14px;letter-spacing:.5px;}
+.wa-link .ic{font-size:26px;}
+.wa-link .sub{font-size:11px;font-weight:400;opacity:.85;}
+.call-card{background:#fff;border:1.5px solid var(--gold-pale);border-radius:12px;padding:20px;display:flex;align-items:center;gap:14px;}
+.call-card .ic{font-size:26px;}
+.call-card .label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:3px;}
+.call-card .num{font-size:16px;font-weight:700;color:var(--dark2);}
+.map-frame{border-radius:12px;overflow:hidden;box-shadow:var(--shadow);min-height:220px;}
+.map-frame iframe{width:100%;height:100%;min-height:220px;border:0;display:block;}
+
+.faq-section{background:var(--cream);padding:60px 56px;}
+.faq-section .section-header{max-width:900px;margin:0 auto 30px;text-align:center;}
+.section-label{font-size:10.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:9px;display:block;}
+.faq-section h2{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--dark2);}
+.faq-section h2 em{font-style:italic;color:var(--gold);}
+.faq-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.faq-item{background:#fff;border:1px solid var(--gold-pale);border-radius:10px;padding:18px 20px;}
+.faq-item h5{font-family:'Playfair Display',serif;font-size:14.5px;color:var(--dark2);margin-bottom:6px;}
+.faq-item p{font-size:12.5px;color:var(--muted);line-height:1.6;}
+
+footer.footer{background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:26px;font-size:12.5px;}
+footer.footer a{color:var(--gold);}
+.toast{position:fixed;bottom:28px;right:28px;background:var(--dark2);color:#fff;padding:13px 20px;border-radius:10px;font-size:13px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.3);border-left:4px solid var(--gold);transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);z-index:9999;display:flex;align-items:center;gap:10px;}
+.toast.show{transform:translateX(0);}
+
+@media(max-width:900px){
+  .navbar{padding:0 18px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .cat-page-hero,.contact-wrap,.faq-section{padding-left:22px;padding-right:22px;}
+  .contact-wrap{grid-template-columns:1fr;}
+  .faq-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">✦ Free delivery on orders above KES 2,500 &nbsp;|&nbsp; New arrivals every Friday ✦</div>
+
+<nav class="navbar" id="navbar">
+   <a href="index.html" class="logo">
+   
+  <img src="/824018063112009913.jpg" alt="Al-Noor" class="logo-img">
+  <div class="logo-text">
+    <span class="name">Al-Noor</span>
+    <span class="tagline">Modest Wear · Eldoret</span>
+  </div>
+  </a>
+  <div class="nav-links">
+    <a href="/Homes.html">Home</a>
+    <a href="/her.html">Women</a>
+    <a href="/men.html">Men</a>
+    <a href="/kids.html">Kids</a>
+    <a href="/perfumes.html">Perfumes</a>
+    <a href="/carpets.html">Carpets</a>
+    <a href="/sprorts.html">Sports</a>
+    <a href="/contact.html" class="active">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="icon-btn" title="Search" onclick="alert('Search coming soon!')"></button>
+    <button class="icon-btn cart-btn" title="Cart" onclick="alert('Cart: ' + cartCount + ' items')">🛒
+      <span class="badge" id="cartBadge">0</span>
+    </button>
+    <button class="hamburger" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/Homes.html">Home</a>
+  <a href="/her.html">Women</a>
+  <a href="/men.html">Men</a>
+  <a href="/kids.html">Kids</a>
+  <a href="/perfumes.html">Perfumes</a>
+  <a href="/carpets.html">Carpets</a>
+  <a href="/sprorts.html">Sports</a>
+  <a href="/contact.html" class="active">Contact</a>
+</div>
+
+<div class="cat-page-hero">
+  <div class="cat-page-hero-text">
+    <div class="breadcrumb"><a href="/Homes.html">Home</a> / <span>Contact Us</span></div>
+    <h1>Get in <em>Touch</em></h1>
+    <p>We're based right here in Eldoret. Chat with us on WhatsApp, visit our store, or send us a message.</p>
+  </div>
+  <div class="cat-page-hero-stats">
+    <div class="stat-item"><div class="num">8am</div><div class="lbl">Opens Daily</div></div>
+    <div class="stat-item"><div class="num">9pm</div><div class="lbl">Closes Daily</div></div>
+    <div class="stat-item"><div class="num">💬</div><div class="lbl">WhatsApp</div></div>
+  </div>
+</div>
+
+<div class="contact-wrap">
+  <div>
+    <h3>Send a <em>Message</em></h3>
+    <form class="contact-form" id="contactForm">
+    <input type="text" name="name" placeholder="Your Full Name" required>
+
+    <input type="email" name="email" placeholder="Email Address" required>
+
+    <input type="tel" name="phone" placeholder="Phone / WhatsApp Number">
+
+    <textarea name="message" rows="5" placeholder="Your message..." required></textarea>
+
+    <button type="submit">Send Message</button>
+</form>
+  </div>
+  <div class="info-col">
+    <h3>Visit <em>Our Store</em></h3>
+    <div class="store-card">
+      <div class="ic"></div>
+      <h4>Al-Noor Modest Wear</h4>
+      <p>Eldoret Town Centre<br>Uasin Gishu County, Kenya<br><br>Mon – Sat: 8:00 AM – 9:00 PM<br>Sunday: 10:00 AM – 6:00 PM</p>
+    </div>
+    <a href="https://wa.me/254758899828" class="wa-link">
+      <span class="ic">💬</span>
+      <div><div>Chat on WhatsApp</div><div class="sub">Typically replies within minutes</div></div>
+    </a>
+    <div class="call-card">
+      <span class="ic">📞</span>
+      <div>
+        <div class="label">Call Us</div>
+        <div class="num">+254 758899828</div>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps?q=Eldoret,Kenya&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header">
+    <span class="section-label">Quick Answers</span>
+    <h2>Frequently Asked <em>Questions</em></h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h5>How long does delivery take?</h5>
+      <p>Within Eldoret, orders typically arrive same-day or next-day. Countrywide delivery takes 2–4 business days.</p>
+      <p>we value your feedback</p>
+    </div>
+    <div class="faq-item">
+      <h5>Can I pay on delivery?</h5>
+      <p>Yes — we accept M-Pesa, card, and cash on delivery within Eldoret town.</p>
+    </div>
+    <div class="faq-item">
+      <h5>What's your return policy?</h5>
+      <p>Unworn items in original condition can be exchanged within 7 days of purchase.</p>
+    </div>
+    <div class="faq-item">
+      <h5>Do you have a physical store?</h5>
+      <p>Yes, visit us at Eldoret Town Centre — see the map above for directions.</p>
+      <p>We also have a shop in Nairobi and Mombasa.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; 2026 Al-Noor Modest Wear, Eldoret. &nbsp;|&nbsp; <a href="/Homes.html">Back to Home</a>
+</footer>
+
+<div class="toast" id="toast">
+  <span>✓</span>
+  <span id="toastMsg">Message sent!</span>
+</div>
+
+<script>
+  let cartCount = 0;
+let toastTimer;
+
+document.getElementById("contactForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const formData = new FormData(form);
+
+    const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        message: formData.get("message")
+    };
+
+    try {
+        const response = await fetch("http://localhost:3000/api/inquiries", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Something went wrong");
+        }
+
+        document.getElementById("toastMsg").textContent =
+            "Thank you — we will be in touch shortly!";
+
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
+
+        form.reset();
+
+    } catch (error) {
+        console.error(error);
+
+        document.getElementById("toastMsg").textContent =
+            "Sorry, your message could not be sent.";
+
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
+    }
+});
+
+
+function toggleMenu() {
+    document.getElementById("ham").classList.toggle("open");
+    document.getElementById("mobileMenu").classList.toggle("open");
+}
+
+
+window.addEventListener("scroll", () => {
+    document.getElementById("navbar").classList.toggle(
+        "scrolled",
+        window.scrollY > 10
+    );
+});
+</script>
+
+</body>
+</html>

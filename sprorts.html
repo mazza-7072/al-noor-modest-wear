@@ -1,0 +1,2423 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sports & Activewear – Al-Noor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --gold:#c9973a;
+    --gold-light:#e8c46a;
+    --gold-pale:#f5e6c0;
+    --dark:#0d0d0d;
+    --dark2:#1a1612;
+    --cream:#f8f4ee;
+    --text:#2a2318;
+    --muted:#7a6b55;
+    --white:#fff;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--cream);
+    color:var(--text);
+    font-family:'Raleway',sans-serif;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top-bar{
+    background:var(--dark2);
+    color:var(--gold-light);
+    font-size:11px;
+    text-align:center;
+    padding:8px 15px;
+    letter-spacing:1px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:68px;
+    background:#fff;
+    border-bottom:1px solid var(--gold-pale);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 45px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-img{
+    height:42px;
+    width:auto;
+}
+
+.logo-text .name{
+    display:block;
+    font-family:'Playfair Display',serif;
+    font-size:19px;
+    font-weight:700;
+}
+
+.logo-text .tagline{
+    display:block;
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
+    font-weight:700;
+}
+
+/* NAV LINKS */
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:3px;
+}
+
+.nav-links a{
+    font-size:12px;
+    font-weight:600;
+    padding:8px 12px;
+    border-radius:20px;
+}
+
+.nav-links a:hover{
+    background:var(--gold-pale);
+    color:var(--gold);
+}
+
+.nav-links a.active{
+    background:var(--gold);
+    color:white;
+}
+
+/* NAV ACTIONS */
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.icon-btn{
+    border:0;
+    background:none;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.icon-btn:hover{
+    background:var(--gold-pale);
+}
+
+.cart-btn{
+    background:var(--gold);
+    color:white;
+    position:relative;
+}
+
+.badge{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    width:17px;
+    height:17px;
+    border-radius:50%;
+    background:var(--dark2);
+    color:white;
+    font-size:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* HAMBURGER */
+
+.hamburger{
+    display:none;
+    border:0;
+    background:none;
+    cursor:pointer;
+}
+
+.hamburger span{
+    display:block;
+    width:23px;
+    height:2px;
+    background:var(--text);
+    margin:5px;
+}
+
+/* MOBILE MENU */
+
+.mobile-menu{
+    display:none;
+    background:white;
+    padding:15px 25px;
+    position:absolute;
+    top:68px;
+    left:0;
+    right:0;
+    z-index:999;
+}
+
+.mobile-menu.open{
+    display:flex;
+    flex-direction:column;
+}
+
+.mobile-menu a{
+    padding:12px 0;
+    border-bottom:1px solid var(--gold-pale);
+    font-weight:600;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.cat-page-hero{
+    background:linear-gradient(110deg,var(--dark2),#2a1f0f);
+    padding:45px 55px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+}
+
+.breadcrumb{
+    color:#aaa;
+    font-size:11px;
+    margin-bottom:10px;
+}
+
+.breadcrumb span{
+    color:var(--gold);
+}
+
+.cat-page-hero h1{
+    color:white;
+    font-family:'Playfair Display',serif;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.cat-page-hero h1 em{
+    color:var(--gold-light);
+}
+
+.cat-page-hero p{
+    color:#bbb;
+    font-size:14px;
+    line-height:1.7;
+    max-width:500px;
+}
+
+.cat-page-hero-stats{
+    display:flex;
+    gap:30px;
+}
+
+.stat-item{
+    text-align:center;
+}
+
+.stat-item .num{
+    color:var(--gold-light);
+    font-family:'Playfair Display',serif;
+    font-size:27px;
+    font-weight:bold;
+}
+
+.stat-item .lbl{
+    color:#aaa;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+/* =========================
+   CATEGORY BUTTONS
+========================= */
+
+.scent-strip{
+    background:white;
+    padding:15px 50px;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    border-bottom:1px solid var(--gold-pale);
+}
+
+.scent-pill{
+    flex-shrink:0;
+    border:1px solid var(--gold-pale);
+    background:var(--cream);
+    padding:9px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.scent-pill:hover{
+    border-color:var(--gold);
+}
+
+.scent-pill.active{
+    background:var(--gold);
+    color:white;
+}
+
+/* =========================
+   PAGE BODY
+========================= */
+
+.cat-page-body{
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:25px;
+    padding:35px 55px;
+}
+
+/* FILTER */
+
+.filter-panel{
+    background:white;
+    padding:22px;
+    border-radius:12px;
+    height:max-content;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+
+.filter-panel h3{
+    font-family:'Playfair Display',serif;
+    margin-bottom:20px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--gold-pale);
+}
+
+.filter-group{
+    margin-bottom:22px;
+}
+
+.filter-group h4{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.filter-option{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+    font-size:13px;
+}
+
+.filter-option input{
+    accent-color:var(--gold);
+}
+
+.price-range{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.price-input{
+    width:80px;
+    padding:7px;
+    border:1px solid var(--gold-pale);
+    border-radius:5px;
+}
+
+.filter-apply{
+    width:100%;
+    padding:10px;
+    border:0;
+    background:var(--gold);
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+/* =========================
+   SORT BAR
+========================= */
+
+.sort-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.result-count{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.sort-select{
+    padding:8px 12px;
+    border:1px solid var(--gold-pale);
+    background:white;
+    border-radius:5px;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.cat-product-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.product-card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 35px rgba(0,0,0,.15);
+}
+
+.product-img-wrap{
+    height:230px;
+    position:relative;
+    overflow:hidden;
+    background:#eee;
+}
+
+.product-img-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.product-card:hover img{
+    transform:scale(1.07);
+}
+
+.product-badge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:var(--gold);
+    color:white;
+    padding:4px 9px;
+    font-size:9px;
+    border-radius:3px;
+    font-weight:bold;
+}
+
+.product-badge.sale{
+    background:#c0392b;
+}
+
+.wishlist-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    border:0;
+    background:white;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.product-info{
+    padding:15px;
+}
+
+.product-cat{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.product-info h4{
+    font-family:'Playfair Display',serif;
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.product-desc{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:7px;
+}
+
+.product-rating{
+    color:var(--gold);
+    font-size:12px;
+    margin-bottom:10px;
+}
+
+.product-rating span{
+    color:var(--muted);
+}
+
+.product-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.product-price{
+    color:var(--gold);
+    font-weight:bold;
+    font-size:16px;
+}
+
+.add-btn{
+    background:var(--dark2);
+    color:white;
+    border:0;
+    padding:8px 13px;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:var(--gold);
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.pagination{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:35px;
+}
+
+.page-btn{
+    width:38px;
+    height:38px;
+    border:1px solid var(--gold-pale);
+    background:white;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.page-btn.active{
+    background:var(--gold);
+    color:white;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    background:var(--dark);
+    color:#aaa;
+    text-align:center;
+    padding:25px;
+    font-size:12px;
+}
+
+.footer a{
+    color:var(--gold);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:var(--dark2);
+    color:white;
+    padding:14px 20px;
+    border-radius:8px;
+    transform:translateX(130%);
+    transition:.4s;
+    z-index:9999;
+}
+
+.toast.show{
+    transform:translateX(0);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:10000;
+}
+
+.modal-overlay.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.product-modal{
+    background:white;
+    width:100%;
+    max-width:800px;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:15px;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    position:relative;
+}
+
+.modal-img{
+    min-height:300px;
+}
+
+.modal-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.modal-body{
+    padding:30px;
+}
+
+.modal-close{
+    position:absolute;
+    top:12px;
+    right:12px;
+    border:0;
+    background:#222;
+    color:white;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.modal-cat{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:2px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.modal-body h3{
+    font-family:'Playfair Display',serif;
+    font-size:23px;
+    margin-bottom:8px;
+}
+
+.modal-price{
+    color:var(--gold);
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.modal-group{
+    margin-bottom:20px;
+}
+
+.modal-group h4{
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:9px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.option-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.opt-btn{
+    padding:8px 13px;
+    border:1px solid var(--gold-pale);
+    background:var(--cream);
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.opt-btn.active{
+    background:var(--gold);
+    color:white;
+    border-color:var(--gold);
+}
+
+.qty-control{
+    display:flex;
+    align-items:center;
+    width:max-content;
+    border:1px solid var(--gold-pale);
+    border-radius:7px;
+    overflow:hidden;
+}
+
+.qty-control button{
+    width:38px;
+    height:38px;
+    border:0;
+    cursor:pointer;
+}
+
+.qty-control span{
+    width:40px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.modal-add-btn{
+    width:100%;
+    padding:14px;
+    background:var(--gold);
+    color:white;
+    border:0;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1100px){
+
+    .cat-page-body{
+        grid-template-columns:1fr;
+        padding:25px;
+    }
+
+    .filter-panel{
+        display:none;
+    }
+
+    .cat-product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .navbar{
+        padding:0 18px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hamburger{
+        display:block;
+    }
+
+    .cat-page-hero{
+        padding:35px 25px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .scent-strip{
+        padding:15px 20px;
+    }
+}
+
+@media(max-width:600px){
+
+    .cat-product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cat-page-hero h1{
+        font-size:32px;
+    }
+
+    .cat-page-hero-stats{
+        gap:20px;
+    }
+
+    .product-modal{
+        grid-template-columns:1fr;
+    }
+
+    .modal-img{
+        height:220px;
+        min-height:0;
+    }
+
+    .logo-text{
+        display:none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="top-bar">
+    ✦ Free delivery on orders above KES 2,500 | New arrivals every Friday ✦
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <img
+        src="/824018063112009913.jpg"
+        alt="Al-Noor"
+        class="logo-img">
+
+        <div class="logo-text">
+            <span class="name">Al-Noor</span>
+            <span class="tagline">Modest Wear · Eldoret</span>
+        </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="/Homes.html">Home</a>
+        <a href="/her.html">Women</a>
+        <a href="/men.html">Men</a>
+        <a href="/kids.html">Kids</a>
+        <a href="/sports.html" class="active">Sports</a>
+        <a href="/perfumes.html">Perfumes</a>
+        <a href="/carpets.html">Carpets</a>
+        <a href="/contact.html">Contact</a>
+
+    </div>
+
+
+    <div class="nav-actions">
+
+        <button
+        class="icon-btn"
+        onclick="alert('Search coming soon!')">
+        🔍
+        </button>
+
+        <button
+        class="icon-btn cart-btn"
+        onclick="alert('Cart: ' + cartCount + ' items')">
+
+            🛒
+
+            <span
+            class="badge"
+            id="cartBadge">
+            0
+            </span>
+
+        </button>
+
+        <button
+        class="hamburger"
+        onclick="toggleMenu()">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="/Homes.html">Home</a>
+    <a href="/her.html">Women</a>
+    <a href="/men.html">Men</a>
+    <a href="/kids.html">Kids</a>
+    <a href="/sports.html">Sports</a>
+    <a href="/perfumes.html">Perfumes</a>
+    <a href="/carpets.html">Carpets</a>
+    <a href="/contact.html">Contact</a>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="cat-page-hero">
+
+    <div>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <span>Sports</span>
+        </div>
+
+        <h1>
+            Sports <em>& Activewear</em>
+        </h1>
+
+        <p>
+            Performance gear and activewear for training,
+            running, gym, football, basketball, cycling,
+            tennis and everyday athletes.
+        </p>
+
+    </div>
+
+
+    <div class="cat-page-hero-stats">
+
+        <div class="stat-item">
+            <div class="num">20+</div>
+            <div class="lbl">Styles</div>
+        </div>
+
+        <div class="stat-item">
+            <div class="num">100%</div>
+            <div class="lbl">Quality</div>
+        </div>
+
+        <div class="stat-item">
+            <div class="num">⭐ 4.7</div>
+            <div class="lbl">Rating</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<div class="scent-strip">
+
+    <button class="scent-pill active"
+    onclick="filterCat(this,'all')">
+        All
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'running')">
+        Running
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'training')">
+        Training & Gym
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'football')">
+        Football
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'basketball')">
+        Basketball
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'cycling')">
+        Cycling
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'tennis')">
+        Tennis
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'compression')">
+        Compression
+    </button>
+
+    <button class="scent-pill"
+    onclick="filterCat(this,'accessories')">
+        Sports Accessories
+    </button>
+
+</div>
+
+
+<!-- =========================
+     BODY
+========================= -->
+
+<div class="cat-page-body">
+
+
+<!-- FILTER -->
+
+<div class="filter-panel">
+
+    <h3>Filter</h3>
+
+    <div class="filter-group">
+
+        <h4>Category</h4>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>Running</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>Training & Gym</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>Football</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>Basketball</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>Cycling</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>Tennis</label>
+        </div>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <h4>Price Range</h4>
+
+        <div class="price-range">
+
+            <input
+            class="price-input"
+            type="number"
+            placeholder="Min"
+            value="500">
+
+            <span>–</span>
+
+            <input
+            class="price-input"
+            type="number"
+            placeholder="Max"
+            value="5000">
+
+        </div>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <h4>Size</h4>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>S</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>M</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>L</label>
+        </div>
+
+        <div class="filter-option">
+            <input type="checkbox">
+            <label>XL</label>
+        </div>
+
+    </div>
+
+
+    <button class="filter-apply">
+        Apply Filters
+    </button>
+
+</div>
+
+
+<!-- PRODUCTS AREA -->
+
+<div>
+
+    <div class="sort-bar">
+
+        <div class="result-count">
+            Showing
+            <strong id="resultCount">10</strong>
+            pieces
+        </div>
+
+        <select class="sort-select">
+
+            <option>Sort: Newest First</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Best Selling</option>
+
+        </select>
+
+    </div>
+
+
+    <div
+    class="cat-product-grid"
+    id="productGrid">
+
+
+<!-- PRODUCT 1 -->
+
+<div
+class="product-card"
+data-cat="running"
+data-colors="Black,White,Navy,Red"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Polyester,Lightweight Mesh"
+data-regions="Kenya:0,China:100,Turkey:250,UAE:180,Pakistan:120,Saudi Arabia:220,Europe:400,Africa:80">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/3e6a9a615f873c24ccda52c4ff31fbd4.jpg"
+        alt="Performance Running T-Shirt">
+
+        <span class="product-badge">
+            Best Seller
+        </span>
+
+        <button class="wishlist-btn">
+            ♡
+        </button>
+
+    </div>
+
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Running
+        </div>
+
+        <h4>
+            Performance Running T-Shirt
+        </h4>
+
+        <p class="product-desc">
+            Lightweight, breathable and sweat-wicking
+            for long runs.
+        </p>
+
+        <div class="product-rating">
+            ★★★★★
+            <span>(72)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 1,800
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 2 -->
+
+<div
+class="product-card"
+data-cat="training"
+data-colors="Black,Grey,Navy,Olive"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Dry-Fit Polyester,Nylon-Spandex"
+data-regions="Kenya:0,China:100,Turkey:220,UAE:180,Pakistan:120,Saudi Arabia:200,Europe:400,Africa:80">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/95c5fcd5351e346c4ef67bdade33584f.jpg"
+        alt="Training Shorts">
+
+        <span class="product-badge">
+            Popular
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Training & Gym
+        </div>
+
+        <h4>
+            Performance Training Shorts
+        </h4>
+
+        <p class="product-desc">
+            Flexible training shorts with quick-dry
+            fabric and secure pockets.
+        </p>
+
+        <div class="product-rating">
+            ★★★★★ <span>(48)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 1,600
+</span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">Add +</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div
+class="product-card"
+data-cat="training"
+data-colors="Black,White,Charcoal,Blue"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Polyester,Performance Jersey"
+data-regions="Kenya:600,China:700,">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/8eda7fee6ca5012ceee5c8e8b4beff81.jpg" alt="Training Tank Top">
+        <span class="product-badge"> New </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Training & Gym </div>
+        <h4>Training Tank Top </h4>
+
+        <p class="product-desc">
+            Stretch performance top designed for gym
+            and high-intensity workouts. </p>
+
+        <div class="product-rating">
+            ★★★★☆ <span>(36)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 1,400
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">   Add + </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 4 -->
+
+<div
+class="product-card"
+data-cat="football"
+data-colors="Black,White,Red,Blue,Green"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Performance Polyester,Mesh"
+data-regions="Kenya:0,China:150,Turkey:300,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:500,Africa:100">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/a859e65556d398d5ef007aef112f06fb.jpg"
+        alt="Football Jersey">
+
+        <span class="product-badge">
+            Trending
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Football
+        </div>
+
+        <h4>
+            Football Performance Jersey
+        </h4>
+
+        <p class="product-desc">
+            Breathable match-day jersey built for speed
+            and movement.
+        </p>
+
+        <div class="product-rating">
+            ★★★★★ <span>(61)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 2,200
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div
+class="product-card"
+data-cat="basketball"
+data-colors="Black,White,Red,Blue,Yellow"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Breathable Mesh,Polyester"
+data-regions="Kenya:0,China:150,Turkey:300,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:500,Africa:100">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/f81655baa2a9bf8eefca29a68cdf4ffd.jpg"
+        alt="Basketball Jersey">
+
+        <span class="product-badge">
+            Popular
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Basketball
+        </div>
+
+        <h4>
+            Basketball Jersey & Shorts Set
+        </h4>
+
+        <p class="product-desc">
+            Lightweight two-piece set with breathable
+            mesh for court play.
+        </p>
+
+        <div class="product-rating">
+            ★★★★★ <span>(54)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 2,800
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 6 -->
+
+<div
+class="product-card"
+data-cat="cycling"
+data-colors="Black,Blue,Red,Green"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Breathable Polyester,Stretch Mesh"
+data-regions="Kenya:0,China:180,Turkey:350,UAE:250,Pakistan:180,Saudi Arabia:300,Europe:600,Africa:120">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/00576f51e113124d9d20e382ce69fb03.jpg"
+        alt="Cycling Jersey">
+
+        <span class="product-badge">
+            New
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Cycling
+        </div>
+
+        <h4>
+            Cycling Performance Jersey
+        </h4>
+
+        <p class="product-desc">
+            Close-fit cycling jersey with breathable
+            panels and rear storage.
+        </p>
+
+        <div class="product-rating">
+            ★★★★☆ <span>(29)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 3,200
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 7 -->
+
+<div
+class="product-card"
+data-cat="tennis"
+data-colors="White,Navy,Black,Green"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Performance Polyester,Stretch Jersey"
+data-regions="Kenya:0,China:120,Turkey:250,UAE:180,Pakistan:130,Saudi Arabia:220,Europe:450,Africa:90">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/56745b2fbe28c7d092ef1e951e86b6cd.jpg"
+        alt="Tennis Polo">
+
+        <span class="product-badge">
+            Popular
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Tennis
+        </div>
+
+        <h4>
+            Tennis Performance Polo
+        </h4>
+
+        <p class="product-desc">
+            Lightweight stretch polo for court movement
+            and comfort.
+        </p>
+
+        <div class="product-rating">
+            ★★★★☆ <span>(33)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 2,000
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 8 -->
+
+<div
+class="product-card"
+data-cat="compression"
+data-colors="Black,Navy,Charcoal"
+data-sizes="S,M,L,XL,XXL"
+data-fabrics="Nylon-Spandex,Compression Jersey"
+data-regions="Kenya:200,China:600,Turkey:800,UAE:750,">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/880ffed16e829399ad0597b860fcdc2c.jpg"
+        alt="Compression Set">
+
+        <span class="product-badge">
+            Best Seller
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Compression
+        </div>
+
+        <h4>
+            Compression Base Layer Set
+        </h4>
+
+        <p class="product-desc">
+            Supportive compression top and leggings for
+            training and recovery.
+        </p>
+
+        <div class="product-rating">
+            ★★★★★ <span>(58)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 3,000
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 9 -->
+
+<div
+class="product-card"
+data-cat="accessories"
+data-colors="Black,Navy,Grey"
+data-sizes="One Size"
+data-fabrics="Durable Polyester,Water Resistant Fabric"
+data-regions="Kenya:0,China:150,Turkey:280,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:450,Africa:100">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/c94f043422c7b9d809e6afa6a212fbaf.jpg"
+        alt="Training Bag">
+
+        <span class="product-badge">
+            New
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Sports Accessories
+        </div>
+
+        <h4>
+            Athlete Essentials Training Bag
+        </h4>
+
+        <p class="product-desc">
+            Spacious sports bag for clothes, towels,
+            bottles and training gear.
+        </p>
+
+        <div class="product-rating">
+            ★★★★☆ <span>(27)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 2,500
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 10 -->
+
+<div
+class="product-card"
+data-cat="accessories"
+data-colors="Black,White,Grey"
+data-sizes="S,M,L,XL"
+data-fabrics="Cotton,Performance Polyester"
+data-regions="Kenya:0,China:70,Turkey:120,UAE:100,Pakistan:60,Saudi Arabia:100,Europe:200,Africa:50">
+
+    <div class="product-img-wrap">
+
+        <img
+        src="/image/63023f3a341c3f484f5e0b08a7c597f9.jpg"
+        alt="Sports Socks"> <span class="product-badge"> Value
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <div class="product-cat">
+            Sports Accessories
+        </div>
+
+        <h4>
+            Performance Sports Socks — 3 Pack
+        </h4>
+
+        <p class="product-desc">
+            Breathable cushioned socks for running,
+            training and everyday sport.
+        </p>
+
+        <div class="product-rating">
+            ★★★★★ <span>(44)</span>
+        </div>
+
+        <div class="product-footer">
+
+            <span class="product-price">
+                KES 900
+            </span>
+
+            <button
+            class="add-btn"
+            onclick="openProductModal(this)">
+                Add +
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    </div>
+
+
+    <!-- PAGINATION -->
+
+    <div class="pagination">
+
+        <button class="page-btn">
+            ‹
+        </button>
+
+        <button class="page-btn active">
+            1
+        </button>
+
+        <button class="page-btn">
+            2
+        </button>
+
+        <button class="page-btn">
+            ›
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    &copy; 2026 Al-Noor Modest Wear, Eldoret.
+    |
+    <a href="/Homes.html">
+        Back to Home
+    </a>
+
+</footer>
+
+
+<!-- =========================
+     PRODUCT MODAL
+========================= -->
+
+<div
+class="modal-overlay"
+id="modalOverlay"
+onclick="closeModal(event)">
+
+<div class="product-modal">
+
+    <button
+    class="modal-close"
+    onclick="closeModal()">
+        ✕
+    </button>
+
+
+    <div class="modal-img">
+
+        <img
+        id="modalImg"
+        src=""
+        alt="">
+
+    </div>
+
+
+    <div class="modal-body">
+
+        <div
+        class="modal-cat"
+        id="modalCat">
+        </div>
+
+        <h3 id="modalName">
+        </h3>
+
+        <div
+        class="modal-price"
+        id="modalPrice">
+        </div>
+
+
+        <!-- COLOR -->
+
+        <div class="modal-group">
+
+            <h4>Color</h4>
+
+            <div
+            class="option-row"
+            id="modalColors">
+            </div>
+
+        </div>
+
+
+        <!-- SIZE -->
+
+        <div class="modal-group">
+
+            <h4>Size</h4>
+
+            <div
+            class="option-row"
+            id="modalSizes">
+            </div>
+
+        </div>
+
+
+        <!-- FABRIC -->
+
+        <div class="modal-group">
+
+            <h4>Fabric</h4>
+
+            <div
+            class="option-row"
+            id="modalFabrics">
+            </div>
+
+        </div>
+
+
+        <!-- REGION -->
+
+        <div class="modal-group">
+
+            <h4>
+                Production Region
+            </h4>
+
+            <div
+            class="option-row"
+            id="modalRegions">
+            </div>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <div class="modal-group">
+
+            <h4>
+                Quantity
+            </h4>
+
+            <div class="qty-control">
+
+                <button
+                onclick="changeQty(-1)">
+                    −
+                </button>
+
+                <span id="modalQty">
+                    1
+                </span>
+
+                <button
+                onclick="changeQty(1)">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button
+        class="modal-add-btn"
+        onclick="confirmAddToCart()">
+
+            Add to Cart —
+            <span id="modalTotal"></span>
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+class="toast"
+id="toast">
+
+    ✓
+    <span id="toastMsg">
+        Added to cart!
+    </span>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* CART */
+
+let cartCount = 0;
+
+let currentProduct = {};
+
+
+/* ADD TO CART */
+
+function addToCart(name, quantity){
+
+    cartCount += quantity;
+
+    document.getElementById("cartBadge").textContent = cartCount;
+
+    document.getElementById("toastMsg").textContent =
+        name + " added to cart!";
+
+    document.getElementById("toast").classList.add("show");
+
+    setTimeout(function(){
+
+        document.getElementById("toast").classList.remove("show");
+
+    },3000);
+}
+
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+    document
+    .getElementById("mobileMenu")
+    .classList.toggle("open");
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterCat(button, category){
+
+    document
+    .querySelectorAll(".scent-pill")
+    .forEach(function(item){
+
+        item.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+
+    let products =
+        document.querySelectorAll(".product-card");
+
+    let count = 0;
+
+
+    products.forEach(function(product){
+
+        if(
+            category === "all" ||
+            product.dataset.cat === category
+        ){
+
+            product.style.display = "";
+
+            count++;
+
+        }else{
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+
+    document
+    .getElementById("resultCount")
+    .textContent = count;
+
+}
+
+
+/* OPEN PRODUCT MODAL */
+
+function openProductModal(button){
+
+    let card =
+        button.closest(".product-card");
+
+
+    let name =
+        card.querySelector("h4").textContent;
+
+
+    let category =
+        card.querySelector(".product-cat").textContent;
+
+
+    let image =
+        card.querySelector("img").src;
+
+
+    let priceText =
+        card.querySelector(".product-price").textContent;
+
+
+    let price =
+        parseInt(
+            priceText.replace(/[^0-9]/g,"")
+        );
+
+
+    let colors =
+        card.dataset.colors
+        .split(",")
+        .map(function(item){
+            return item.trim();
+        });
+
+
+    let sizes =
+        card.dataset.sizes
+        .split(",")
+        .map(function(item){
+            return item.trim();
+        });
+
+
+    let fabrics =
+        card.dataset.fabrics
+        .split(",")
+        .map(function(item){
+            return item.trim();
+        });
+
+
+    let regions =
+        card.dataset.regions
+        .split(",")
+        .map(function(item){
+
+            let parts = item.split(":");
+
+            return {
+                name:parts[0],
+                fee:parseInt(parts[1])
+            };
+
+        });
+
+
+    currentProduct = {
+
+        name:name,
+
+        category:category,
+
+        image:image,
+
+        price:price,
+
+        color:colors[0],
+
+        size:sizes[0],
+
+        fabric:fabrics[0],
+
+        region:regions[0].name,
+
+        regionFee:regions[0].fee,
+
+        quantity:1
+
+    };
+
+
+    document.getElementById("modalImg").src =
+        image;
+
+    document.getElementById("modalCat").textContent =
+        category;
+
+    document.getElementById("modalName").textContent =
+        name;
+
+
+    createOptions(
+        "modalColors",
+        colors,
+        "color"
+    );
+
+
+    createOptions(
+        "modalSizes",
+        sizes,
+        "size"
+    );
+
+
+    createOptions(
+        "modalFabrics",
+        fabrics,
+        "fabric"
+    );
+
+
+    createRegions(regions);
+
+
+    document.getElementById("modalQty").textContent =
+        "1";
+
+
+    updatePrice();
+
+
+    document
+    .getElementById("modalOverlay")
+    .classList.add("show");
+
+}
+
+
+/* CREATE NORMAL OPTIONS */
+
+function createOptions(id, options, type){
+
+    let box =
+        document.getElementById(id);
+
+    box.innerHTML = "";
+
+
+    options.forEach(function(option,index){
+
+        let button =
+            document.createElement("button");
+
+
+        button.className =
+            "opt-btn";
+
+
+        if(index === 0){
+
+            button.classList.add("active");
+
+        }
+
+
+        button.textContent =
+            option;
+
+
+        button.onclick =
+            function(){
+
+                currentProduct[type] =
+                    option;
+
+
+                box
+                .querySelectorAll(".opt-btn")
+                .forEach(function(btn){
+
+                    btn.classList.remove("active");
+
+                });
+
+
+                button.classList.add("active");
+
+            };
+
+
+        box.appendChild(button);
+
+    });
+
+}
+
+
+/* CREATE REGIONS */
+
+function createRegions(regions){
+
+    let box =
+        document.getElementById("modalRegions");
+
+    box.innerHTML = "";
+
+
+    regions.forEach(function(region,index){
+
+        let button =
+            document.createElement("button");
+
+
+        button.className =
+            "opt-btn";
+
+
+        if(index === 0){
+
+            button.classList.add("active");
+
+        }
+
+
+        if(region.fee === 0){
+
+            button.textContent =
+                region.name;
+
+        }else{
+
+            button.textContent =
+                region.name +
+                " +KES " +
+                region.fee.toLocaleString();
+
+        }
+
+
+        button.onclick =
+            function(){
+
+                currentProduct.region =
+                    region.name;
+
+                currentProduct.regionFee =
+                    region.fee;
+
+
+                box
+                .querySelectorAll(".opt-btn")
+                .forEach(function(btn){
+
+                    btn.classList.remove("active");
+
+                });
+
+
+                button.classList.add("active");
+
+
+                updatePrice();
+
+            };
+
+
+        box.appendChild(button);
+
+    });
+
+}
+
+
+/* UPDATE PRICE */
+
+function updatePrice(){
+
+    let unitPrice =
+        currentProduct.price +
+        currentProduct.regionFee;
+
+
+    let total =
+        unitPrice *
+        currentProduct.quantity;
+
+
+    document.getElementById("modalPrice").textContent =
+        "KES " +
+        unitPrice.toLocaleString();
+
+
+    document.getElementById("modalTotal").textContent =
+        "KES " +
+        total.toLocaleString();
+
+}
+
+
+/* CHANGE QUANTITY */
+
+function changeQty(amount){
+
+    currentProduct.quantity += amount;
+
+
+    if(currentProduct.quantity < 1){
+
+        currentProduct.quantity = 1;
+
+    }
+
+
+    document.getElementById("modalQty").textContent =
+        currentProduct.quantity;
+
+
+    updatePrice();
+
+}
+
+
+/* CONFIRM CART */
+
+function confirmAddToCart(){
+
+    let details =
+        currentProduct.name +
+        " - " +
+        currentProduct.region;
+
+
+    addToCart(
+        details,
+        currentProduct.quantity
+    );
+
+
+    closeModal();
+
+}
+
+
+/* CLOSE MODAL */
+
+function closeModal(event){
+
+    if(
+        event &&
+        event.target !== event.currentTarget
+    ){
+
+        return;
+
+    }
+
+
+    document
+    .getElementById("modalOverlay")
+    .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>
+```

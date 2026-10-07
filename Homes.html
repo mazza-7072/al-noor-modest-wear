@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Noor Modest Wear – Eldoret</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#c9973a;--gold-light:#e8c46a;--gold-pale:#f5e6c0;--gold-subtle:#fdf6e8;
+  --dark:#0d0d0d;--dark2:#1a1612;--cream:#f8f4ee;--text:#2a2318;--muted:#7a6b55;--white:#fff;
+  --radius:10px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-lg:0 12px 40px rgba(0,0,0,0.14);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--text);font-family:'Raleway',sans-serif;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+
+/* ═══ TOP BAR ═══════════════════════════════════════ */
+.top-bar{background:var(--dark2);color:var(--gold-light);font-size:11.5px;text-align:center;padding:7px 20px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+
+/* ═══ NAVBAR ════════════════════════════════════════ */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,151,58,0.18);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;transition:box-shadow .3s;}
+.navbar.scrolled{box-shadow:0 4px 32px rgba(0,0,0,0.10);}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0;}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px rgba(201,151,58,.35);}
+.logo-icon svg{width:22px;height:22px;fill:#fff;}
+.logo-text .name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--dark2);display:block;line-height:1.1;}
+.logo-text .tagline{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;}
+.logo-img{
+  height:42px;
+  width:auto;
+  display:block;
+}
+/* NAV LINKS */
+.nav-links{display:flex;align-items:center;gap:2px;flex:1;justify-content:center;margin:0 24px;}
+.nav-links a{font-size:12.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;padding:6px 13px;border-radius:30px;transition:all .22s;white-space:nowrap;}
+.nav-links a:hover{background:var(--gold-pale);color:var(--gold);}
+.nav-links a.active{background:var(--gold);color:#fff;box-shadow:0 2px 12px rgba(201,151,58,.4);}
+
+/* NAV ACTIONS */
+.nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--text);font-size:17px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.icon-btn:hover{background:var(--gold-pale);color:var(--gold);}
+.cart-btn{background:var(--gold)!important;color:#fff!important;position:relative;}
+.cart-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--dark2);color:#fff;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid var(--gold-pale);padding:16px 28px;gap:4px;position:absolute;top:68px;left:0;right:0;z-index:999;box-shadow:0 10px 30px rgba(0,0,0,.1);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:14px;font-weight:600;padding:11px 0;border-bottom:1px solid var(--gold-pale);letter-spacing:.4px;transition:color .2s;}
+.mobile-menu a:hover{color:var(--gold);}
+
+/* ═══ HERO SLIDESHOW ════════════════════════════════ */
+.hero{position:relative;height:90vh;min-height:480px;overflow:hidden;}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;display:flex;align-items:center;}
+.slide.active{opacity:1;z-index:1;}
+.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.07);transition:transform 8s ease;}
+.slide.active .slide-bg{transform:scale(1);}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,8,5,.8) 42%,rgba(10,8,5,.22) 100%);}
+.slide-content{position:relative;z-index:2;padding:0 80px;max-width:660px;opacity:0;transform:translateY(28px);transition:opacity .9s .4s,transform .9s .4s;}
+.slide.active .slide-content{opacity:1;transform:translateY(0);}
+.slide-label{font-size:10.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-bottom:14px;display:block;}
+.slide-content h1{font-family:'Playfair Display',serif;font-size:54px;line-height:1.1;color:#fff;margin-bottom:16px;}
+.slide-content h1 em{font-style:italic;color:var(--gold-light);}
+.slide-content p{font-size:15px;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:28px;max-width:400px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{padding:12px 28px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#000;border:none;cursor:pointer;border-radius:5px;font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:.3s;box-shadow:0 4px 20px rgba(201,151,58,.4);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,151,58,.55);}
+.btn-ghost{padding:12px 28px;background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff;cursor:pointer;border-radius:5px;font-family:'Raleway',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:.3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;}
+.slide-dots{position:absolute;bottom:32px;left:80px;z-index:5;display:flex;align-items:center;gap:10px;}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.3s;}
+.dot.active{background:var(--gold-light);width:28px;border-radius:4px;}
+.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:19px;transition:.3s;backdrop-filter:blur(4px);}
+.slide-arrow:hover{background:var(--gold);border-color:var(--gold);}
+.slide-arrow.prev-btn{left:22px;}
+.slide-arrow.next-btn{right:22px;}
+
+/* ═══ FEATURES BAR ══════════════════════════ */
+.features-bar{
+  position:relative;
+  background:linear-gradient(100deg,#0d0a05 0%,#1e1508 50%,#0d0a05 100%);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(201,151,58,.35);
+  border-bottom:1px solid rgba(201,151,58,.35);
+  overflow:hidden;
+}
+.features-bar::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 24%,rgba(201,151,58,.04) 24%,rgba(201,151,58,.04) 25%);
+  pointer-events:none;
+}
+.feature-item{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  padding:26px 24px;
+  border-right:1px solid rgba(201,151,58,.18);
+  transition:all .4s ease;
+  overflow:hidden;
+}
+.feature-item::after{
+  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transition:width .4s ease;
+}
+.feature-item:hover::after{width:80%;}
+.feature-item:hover{background:rgba(201,151,58,.07);}
+.feature-item:last-child{border-right:none;}
+.feature-icon-wrap{
+  width:48px;height:48px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(201,151,58,.18),rgba(201,151,58,.06));
+  border:1px solid rgba(201,151,58,.3);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+  transition:transform .3s,box-shadow .3s;
+}
+.feature-item:hover .feature-icon-wrap{
+  transform:scale(1.1);
+  box-shadow:0 0 20px rgba(201,151,58,.28);
+}
+.feature-item .ft{font-size:13px;color:rgba(255,255,255,.6);font-weight:400;line-height:1.55;}
+.feature-item .ft strong{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:14.5px;font-weight:600;font-style:normal;
+  color:var(--gold-light);
+  letter-spacing:.2px;
+  margin-bottom:3px;
+}
+
+/* ═══ SECTIONS ════════════════════════════════════════ */
+.section{padding:64px 56px;}
+.section-header{margin-bottom:38px;}
+.section-label{font-size:10.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:9px;display:block;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--dark2);line-height:1.2;}
+.section-header h2 em{font-style:italic;color:var(--gold);}
+.section-header p{margin-top:10px;font-size:14.5px;color:var(--muted);max-width:500px;line-height:1.7;}
+
+/* ═══ CATEGORY GRID (HOME) ════════════════════════════ */
+.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.cat-card{position:relative;border-radius:12px;overflow:hidden;height:340px;cursor:pointer;display:block;}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+.cat-card:hover img{transform:scale(1.06);}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.76) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:26px;transition:.3s;}
+.cat-card:hover .cat-overlay{background:linear-gradient(to top,rgba(0,0,0,.84) 0%,rgba(0,0,0,.14) 55%);}
+.cat-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-bottom:5px;}
+.cat-overlay h3{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:5px;}
+.cat-overlay p{font-size:12.5px;color:rgba(255,255,255,.74);margin-bottom:14px;}
+.cat-link{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);font-weight:700;background:none;border:none;cursor:pointer;transition:gap .2s;font-family:'Raleway',sans-serif;}
+.cat-link:hover{gap:10px;}
+
+/* ═══ PRODUCT GRID ════════════════════════════════════ */
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.product-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:transform .32s,box-shadow .32s;cursor:pointer;}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.product-img-wrap{position:relative;overflow:hidden;height:240px;background:#f0ebe2;}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.product-card:hover .product-img-wrap img{transform:scale(1.08);}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--gold);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:3px;}
+.product-badge.sale{background:#c0392b;}
+.wishlist-btn{position:absolute;top:10px;right:10px;background:#fff;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.12);opacity:0;transition:opacity .3s;}
+.product-card:hover .wishlist-btn{opacity:1;}
+.product-info{padding:14px 16px 18px;}
+.product-cat{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px;}
+.product-info h4{font-family:'Playfair Display',serif;font-size:15px;color:var(--dark2);margin-bottom:4px;}
+.product-desc{font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5;}
+.product-footer{display:flex;justify-content:space-between;align-items:center;}
+.product-price{font-size:16px;font-weight:700;color:var(--gold);}
+.product-price small{font-size:11.5px;color:var(--muted);text-decoration:line-through;margin-left:4px;font-weight:400;}
+.add-btn{background:var(--dark2);color:#fff;border:none;padding:7px 13px;border-radius:4px;font-size:10.5px;font-weight:700;letter-spacing:.7px;cursor:pointer;transition:.2s;font-family:'Raleway',sans-serif;}
+.add-btn:hover{background:var(--gold);}
+
+/* ═══ ESSENTIALS ═══════════════════════════════════ */
+.essentials-section{background:var(--cream);padding:64px 56px;}
+.essentials-section .section-label{color:var(--gold);}
+.essentials-section .section-header h2{color:var(--dark2);}
+.essentials-section .section-header p{color:var(--muted);}
+
+.essentials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px;}
+.essential-card{position:relative;border-radius:12px;overflow:hidden;height:340px;cursor:pointer;}
+.essential-slideshow{position:absolute;inset:0;}
+.ess-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.07);transition:opacity 1.1s ease,transform 8s ease;}
+.ess-img.active{opacity:1;transform:scale(1);}
+.essential-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:26px;transition:.3s;}
+.essential-card:hover .essential-overlay{background:linear-gradient(to top,rgba(0,0,0,.86) 0%,rgba(0,0,0,.16) 55%);}
+.essential-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-bottom:5px;}
+.essential-card h4{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:5px;line-height:1.2;}
+.essential-card p{font-size:12.5px;color:rgba(255,255,255,.74);margin-bottom:14px;line-height:1.55;}
+.essential-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.essential-price{font-size:12px;color:var(--gold-light);font-weight:700;letter-spacing:.5px;}
+.essential-action{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);font-weight:700;background:none;border:none;cursor:pointer;transition:gap .2s;font-family:'Raleway',sans-serif;}
+.essential-action:hover{gap:10px;}
+.slide-dots-mini{position:absolute;top:16px;right:16px;z-index:3;display:flex;gap:5px;}
+.slide-dots-mini .mini-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);transition:.3s;}
+.slide-dots-mini .mini-dot.active{background:var(--gold-light);width:16px;border-radius:3px;}
+
+/* ═══ TESTIMONIALS ════════════════════════════════════ */
+.testimonials-wrap{background:var(--dark2);padding:70px 56px;}
+.testimonials-wrap .section-label{color:var(--gold);}
+.testimonials-wrap .section-header h2{color:#fff;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px;}
+.testimonial-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,151,58,.18);border-radius:12px;padding:26px;transition:.3s;}
+.testimonial-card:hover{background:rgba(201,151,58,.07);border-color:rgba(201,151,58,.4);}
+.stars{color:var(--gold-light);font-size:14px;margin-bottom:12px;}
+.testimonial-card p{font-family:'Playfair Display',serif;font-style:italic;font-size:15.5px;color:rgba(255,255,255,.84);line-height:1.7;margin-bottom:16px;}
+.testimonial-author{display:flex;align-items:center;gap:11px;}
+.author-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#000;flex-shrink:0;}
+.author-info .name{font-size:13.5px;font-weight:600;color:#fff;}
+.author-info .city{font-size:11.5px;color:var(--gold);}
+
+/* ═══ FOOTER ══════════════════════════════════════════ */
+.footer{background:var(--dark);color:#fff;padding:56px 56px 28px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:38px;margin-bottom:44px;}
+.footer-brand p{font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.7;max-width:230px;margin:14px 0 20px;}
+.social-links{display:flex;gap:10px;}
+.social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:14px;cursor:pointer;transition:.2s;}
+.social-btn:hover{background:var(--gold);border-color:var(--gold);color:#000;}
+.footer-col h4{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:16px;}
+.footer-col a{display:block;color:rgba(255,255,255,.5);font-size:13.5px;margin-bottom:9px;transition:color .2s;}
+.footer-col a:hover{color:var(--gold-light);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:rgba(255,255,255,.32);flex-wrap:wrap;gap:10px;}
+.footer-bottom a{color:rgba(255,255,255,.32);}
+.footer-bottom a:hover{color:var(--gold);}
+
+/* ═══ NOTIFICATION TOAST ═════════════════════════════ */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--dark2);color:#fff;padding:13px 20px;border-radius:10px;font-size:13px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.3);border-left:4px solid var(--gold);transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);z-index:9999;display:flex;align-items:center;gap:10px;}
+.toast.show{transform:translateX(0);}
+.toast-icon{font-size:18px;}
+
+/* ═══ RESPONSIVE ══════════════════════════════════════ */
+@media(max-width:1100px){
+  .product-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  .navbar{padding:0 18px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .section,.testimonials-wrap,.footer,.essentials-section{padding-left:22px;padding-right:22px;}
+  .slide-content{padding:0 28px;}
+  .slide-content h1{font-size:34px;}
+  .slide-dots{left:28px;}
+  .category-grid,.essentials-grid,.testimonials-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .features-bar{grid-template-columns:repeat(2,1fr);}
+  .feature-item{border-bottom:1px solid rgba(255,255,255,.06);}
+}
+@media(max-width:600px){
+  .slide-content h1{font-size:27px;}
+  .product-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .features-bar{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">✦ Free delivery on orders above KES 2,500 &nbsp;|&nbsp; New arrivals every Friday ✦</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="logo">
+  <img src="/824018063112009913.jpg" alt="Al-Noor" class="logo-img">
+  <div class="logo-text">
+    <span class="name">Al-Noor</span>
+    <span class="tagline">Modest Wear · Eldoret</span>
+  </div>
+</a>
+  <div class="nav-links">
+    <a href="/Homes.html" class="active">Home</a>
+    <a href="/her.html">Women</a>
+    <a href="/men.html">Men</a>
+    <a href="/kids.html">Kids</a>
+    <a href="/perfumes.html">Perfumes</a>
+    <a href="/carpets.html">Carpets</a>
+    <a href="/sprorts.html">Contact</a>
+     <a href="/contact.html">Contact</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="icon-btn" title="Search" onclick="alert('Search coming soon!')">🔍</button>
+    <button class="icon-btn cart-btn" title="Cart" onclick="alert('Cart: ' + cartCount + ' items')">🛒
+      <span class="badge" id="cartBadge">0</span>
+    </button>
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="Homes.html">Home</a>
+  <a href="her.html">Women</a>
+  <a href="men.html">Men</a>
+  <a href="kids.html">Kids</a>
+  <a href="perfumes.html">Perfumes</a>
+  <a href="carpets.html">Carpets</a>
+  <a href="sprorts.html">Sports</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="slide active" id="slide-0">
+    <div class="slide-bg" style="background-image:url('ABAYA\ JERSEY\ PREMIUM\ MEDINABYDUBAI_COM….jpg')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-label">New Collection 2025</span>
+      <h1>Elegance in <em>Every Thread</em></h1>
+      <p>Timeless Islamic fashion for the whole family — crafted with faith, finesse, and love.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="location.href='women.html'">Shop Women's</button>
+        <button class="btn-ghost" onclick="location.href='women.html'">View Collection</button>
+      </div>
+    </div>
+  </div>
+  <div class="slide" id="slide-1">
+    <div class="slide-bg" style="background-image:url('Step\ into\ refined\ style\ with\ mens\ Emirati\ thobes….jpg')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-label">Men's Collection</span>
+      <h1>Dressed in <em>Dignity</em></h1>
+      <p>Premium thobes, jubbas, and everyday modest wear for the modern Muslim man.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="location.href='men.html'">Shop Men's</button>
+        <button class="btn-ghost" onclick="location.href='men.html'">New Arrivals</button>
+      </div>
+    </div>
+  </div>
+  <div class="slide" id="slide-2">
+    <div class="slide-bg" style="background-image:url('Private\ CPO\ Collection\ Limited\ Edition\ 12mL….jpg')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-label">Halal Fragrances</span>
+      <h1>Scents That <em>Elevate</em> the Soul</h1>
+      <p>Oud, musk, and rose — alcohol-free and luxuriously long-lasting.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="location.href='perfumes.html'">Shop Perfumes</button>
+        <button class="btn-ghost" onclick="location.href='perfumes.html'">Best Sellers</button>
+      </div>
+    </div>
+  </div>
+  <div class="slide" id="slide-3">
+    <div class="slide-bg" style="background-image:url('/download\ \(8\).jpg')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-label">Kids' Modest Wear</span>
+      <h1>Little Ones, <em>Big Style</em></h1>
+      <p>Soft, comfortable, and adorably modest clothing for ages 0–12.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="location.href='kids.html'">Shop Kids'</button>
+        <button class="btn-ghost" onclick="location.href='kids.html'">New In</button>
+      </div>
+    </div>
+  </div>
+  <button class="slide-arrow prev-btn" onclick="moveSlide(-1)">&#8592;</button>
+  <button class="slide-arrow next-btn" onclick="moveSlide(1)">&#8594;</button>
+  <div class="slide-dots" id="dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="dot" onclick="goToSlide(3)"></div>
+  </div>
+</section>
+
+<!-- FEATURES BAR -->
+<div class="features-bar">
+  <div class="feature-item">
+    <div class="feature-icon-wrap"></div>
+    <div class="ft"><strong>Free Delivery</strong>On all orders above KES 2,500</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon-wrap"></div>
+    <div class="ft"><strong>Secure Checkout</strong>100% safe &amp; encrypted payments</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon-wrap"></div>
+    <div class="ft"><strong>WhatsApp Support</strong>Available daily, 8am – 9pm</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon-wrap">✅</div>
+    <div class="ft"><strong>Halal Certified</strong>Alcohol-free fragrances &amp; modest wear</div>
+  </div>
+</div>
+
+<!-- CATEGORY GRID -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">Collections</span>
+    <h2>Shop by <em>Category</em></h2>
+  </div>
+  <div class="category-grid">
+    <a class="cat-card" href="women.html">
+      <img src="abaya _ abaya style _ Abbaya Veils.jpg">
+      <div class="cat-overlay">
+        <span class="cat-tag">For Her</span>
+        <h3>Women's Wear</h3>
+        <p>Abayas, hijabs, modest dresses & more</p>
+        <span class="cat-link">Browse Collection →</span>
+      </div>
+    </a>
+    <a class="cat-card" href="men.html">
+      <img src="download (10).jpg">
+      <div class="cat-overlay">
+        <span class="cat-tag">For Him</span>
+        <h3>Men's Wear</h3>
+        <p>Thobes, jubbas & casual modest wear</p>
+        <span class="cat-link">Browse Collection →</span>
+      </div>
+    </a>
+    <a class="cat-card" href="kids.html">
+      <img src="/Size 54-62, 72 pieces in one carton, feel free to….jpg">
+      <div class="cat-overlay">
+        <span class="cat-tag">For Little Ones</span>
+        <h3>Kids' Wear</h3>
+        <p>Soft, comfortable & modest kids clothing</p>
+        <span class="cat-link">Browse Collection →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section" style="padding-top:0;background:#fff;">
+  <div class="section-header">
+    <span class="section-label">Best Sellers</span>
+    <h2>Featured <em>Products</em></h2>
+  </div>
+  <div class="product-grid">
+    <div class="product-card" onclick="location.href='women.html'">
+      <div class="product-img-wrap">
+        <img src="/Yeni sezon Ferace.jpg">
+        <span class="product-badge">New</span>
+        <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Women · Abayas</div>
+        <h4>Premium Black Abaya</h4>
+        <div class="product-footer">
+          <span class="product-price">KES 4,500 <small>KES 5,200</small></span>
+          <button class="add-btn" onclick="event.stopPropagation();addToCart('Premium Black Abaya')">Add +</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" onclick="location.href='men.html'">
+      <div class="product-img-wrap">
+        <img src="/Discover Timeless Style with Mens Saudi Thobes in UK.jpg">
+        <span class="product-badge">Trending</span>
+        <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Men · Thobes</div>
+        <h4>Emirati-Style Jubba</h4>
+        <div class="product-footer">
+          <span class="product-price">KES 3,200</span>
+          <button class="add-btn" onclick="event.stopPropagation();addToCart('Emirati Jubba')">Add +</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" onclick="location.href='kids.html'">
+      <div class="product-img-wrap">
+        <img src="/سوق الكعكية بمكة_يُعدّ سوق الكعكية من أشهر الأسواق….jpg" alt="Kids">
+        <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Kids · Sets</div>
+        <h4>Kids Soft Cotton Set</h4>
+        <div class="product-footer">
+          <span class="product-price">KES 1,800</span>
+          <button class="add-btn" onclick="event.stopPropagation();addToCart('Kids Cotton Set')">Add +</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" onclick="location.href='perfumes.html'">
+      <div class="product-img-wrap">
+        <img src="/pics/d33f017c8bedf36485309ac4a4cfddd4.jpg" alt="Perfume">
+        <span class="product-badge">Hot</span>
+        <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Sports</div>
+        <h4>classy sportswear</h4>
+        <div class="product-footer">
+          <span class="product-price">Ask In-Store</span>
+          <button class="add-btn" onclick="event.stopPropagation();addToCart('classy sportswear')">Add +</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESSENTIALS -->
+<section class="essentials-section">
+  <div class="section-header">
+    <span class="section-label">Lifestyle & Essentials</span>
+    <h2>Style <em>Hub</em></h2>
+    <p>Everything you need for a beautiful, faith-centred home and life.</p>
+  </div>
+  <div class="essentials-grid">
+    <div class="essential-card" onclick="location.href='perfumes.html'">
+      <div class="essential-slideshow">
+        <img class="ess-img active" src="/pics/406367a1b195cf2b4abcf645961c69ee.jpg" alt="Caps and Arafats">
+        <img class="ess-img" src="/pics/2bf32db0cfd65e337adff52096d29244.jpg" alt="Caps and Arafats">
+        <img class="ess-img" src="/pics/09f85975692591df9081ad554a138c44.jpg" alt="Caps and Arafats">
+      </div>
+      <div class="slide-dots-mini"><span class="mini-dot active"></span><span class="mini-dot"></span><span class="mini-dot"></span></div>
+      <div class="essential-overlay">
+        <span class="essential-tag">Lifestyle · 01</span>
+        <h4>Caps & Arafats</h4>
+        <p>classy caps even something special for cyclists.</p>
+        <div class="essential-card-footer">
+          <span class="essential-price">Ask In-Store</span>
+          <button class="essential-action" onclick="event.stopPropagation();location.href='men.html'">Shop Now →</button>
+        </div>
+      </div>
+    </div>
+    <div class="essential-card" onclick="location.href='carpets.html'">
+      <div class="essential-slideshow">
+        <img class="ess-img active" src="/bmat.jpg" alt="Prayer mats">
+        <img class="ess-img" src="/Գորգերի և Ուղեգորգերի մեծ տեսականի Carpet….jpg" alt="Decorative carpet">
+      </div>
+      <div class="slide-dots-mini"><span class="mini-dot active"></span><span class="mini-dot"></span></div>
+      <div class="essential-overlay">
+        <span class="essential-tag">Lifestyle · 02</span>
+        <h4>Prayer Mats & Carpets</h4>
+        <p>Durable prayer rugs and hand-crafted decorative carpets for every room and prayer space.</p>
+        <div class="essential-card-footer">
+          <span class="essential-price">Ask In-Store</span>
+          <button class="essential-action" onclick="event.stopPropagation();location.href='carpets.html'">Shop Now →</button>
+        </div>
+      </div>
+    </div>
+    <div class="essential-card" onclick="location.href='contact.html'">
+      <div class="essential-slideshow">
+        <img class="ess-img active" src="/pics/28ae5ead1b817037adb30952e19238a4.jpg" alt="Modest footwear">
+        <img class="ess-img" src="/pics/811f0f88994149180b42e22b558997ae.jpg" alt="Sandals">
+      </div>
+      <div class="slide-dots-mini"><span class="mini-dot active"></span><span class="mini-dot"></span></div>
+      <div class="essential-overlay">
+        <span class="essential-tag">Lifestyle · 03</span>
+        <h4>Classy Footwear</h4>
+        <p>Comfortable, elegant sandals and shoes to complement your modest wardrobe.</p>
+        <div class="essential-card-footer">
+          <span class="essential-price">Ask In-Store</span>
+          <button class="essential-action" onclick="event.stopPropagation();location.href='contact.html'">Enquire →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials-wrap">
+  <div class="section-header">
+    <span class="section-label">Customer Stories</span>
+    <h2>What Our <em>Community</em> Says</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"The quality of their abayas is honestly unmatched. I've ordered three times and each one has been perfect!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div class="author-info"><div class="name">Amina Hassan</div><div class="city"> Nairobi</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Best oud perfumes I have ever purchased. The scent lasts all day and the packaging is luxurious."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">Y</div>
+        <div class="author-info"><div class="name">Yusuf Omar</div><div class="city"> Mombasa</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★☆</div>
+      <p>"Fast delivery right here in Eldoret! Great customer service on WhatsApp too — very responsive team."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">F</div>
+        <div class="author-info"><div class="name">Fatuma Wanjiku</div><div class="city"> Eldoret</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" style="margin-bottom:12px;display:inline-flex;">
+        <div class="logo-icon" style="width:34px;height:34px;">
+          <svg viewBox="0 0 48 48"><path d="M28 8a16 16 0 1 0 0 32 14 14 0 0 1 0-32z"/><path d="M36 10l1.2 3.6H41l-3 2.2 1.1 3.5L36 17l-3.1 2.3 1.1-3.5-3-2.2h3.8z"/></svg>
+        </div>
+        <div class="logo-text"><span class="name" style="font-size:16px;">Al-Noor</span><span class="tagline">Modest Wear · Eldoret</span></div>
+      </a>
+      <p>Faith in every thread. Quality Islamic fashion and lifestyle essentials for the whole family, right here in Kenya.</p>
+      <div class="social-links">
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">🎵</a>
+        <a href="https://wa.me/254758899828" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="women.html">Women's Wear</a>
+      <a href="men.html">Men's Wear</a>
+      <a href="kids.html">Kids' Wear</a>
+      <a href="perfumes.html">Perfumes</a>
+      <a href="carpets.html">Carpets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="contact.html">Delivery Info</a>
+      <a href="contact.html">Returns & Refunds</a>
+      <a href="contact.html">Size Guide</a>
+      <a href="contact.html">Track My Order</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="https://wa.me/254758899828">WhatsApp Chat</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="contact.html">Our Story</a>
+      <a href="contact.html">Blog & News</a>
+      <a href="contact.html">Stockists</a>
+      <a href="contact.html">Privacy Policy</a>
+      <a href="contact.html">Terms of Use</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Al-Noor Modest Wear, Eldoret, Kenya. All rights reserved.</span>
+    <div style="display:flex;gap:14px;"><a href="contact.html">Privacy</a><a href="contact.html">Terms</a><a href="contact.html">Cookies</a></div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">🛒</span>
+  <span id="toastMsg">Added to cart!</span>
+</div>
+
+<script>
+let cartCount = 0;
+let toastTimer;
+
+function addToCart(item) {
+  cartCount++;
+  document.getElementById('cartBadge').textContent = cartCount;
+  document.getElementById('toastMsg').textContent = `"${item}" added to cart!`;
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function toggleMenu() {
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* Hero slideshow */
+let current = 0;
+const total = 4;
+let timer;
+
+function goToSlide(n) {
+  document.getElementById('slide-' + current).classList.remove('active');
+  document.querySelectorAll('.dot')[current].classList.remove('active');
+  current = (n + total) % total;
+  document.getElementById('slide-' + current).classList.add('active');
+  document.querySelectorAll('.dot')[current].classList.add('active');
+  resetTimer();
+}
+function moveSlide(dir) { goToSlide(current + dir); }
+function resetTimer() {
+  clearInterval(timer);
+  timer = setInterval(() => moveSlide(1), 5500);
+}
+resetTimer();
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') moveSlide(-1);
+  if (e.key === 'ArrowRight') moveSlide(1);
+});
+
+/* Mini slideshows for the Islamic Living / essentials cards */
+document.querySelectorAll('.essential-card').forEach(card => {
+  const imgs = card.querySelectorAll('.ess-img');
+  const dots = card.querySelectorAll('.mini-dot');
+  if (imgs.length < 2) return;
+  let idx = 0;
+  setInterval(() => {
+    imgs[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (idx + 1) % imgs.length;
+    imgs[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }, 3800);
+});
+</script>
+</body>
+</html>

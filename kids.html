@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids' Modest Wear – Al-Noor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#c9973a;--gold-light:#e8c46a;--gold-pale:#f5e6c0;--gold-subtle:#fdf6e8;
+  --dark:#0d0d0d;--dark2:#1a1612;--cream:#f8f4ee;--text:#2a2318;--muted:#7a6b55;--white:#fff;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-lg:0 12px 40px rgba(0,0,0,0.14);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--text);font-family:'Raleway',sans-serif;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+.top-bar{background:var(--dark2);color:var(--gold-light);font-size:11.5px;text-align:center;padding:7px 20px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,151,58,0.18);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;transition:box-shadow .3s;}
+.navbar.scrolled{box-shadow:0 4px 32px rgba(0,0,0,0.10);}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0;}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px rgba(201,151,58,.35);}
+.logo-icon svg{width:22px;height:22px;fill:#fff;}
+.logo-img{
+  height:42px;
+  width:auto;
+  display:block;
+}
+.logo-text .name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--dark2);display:block;line-height:1.1;}
+.logo-text .tagline{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;}
+.nav-links{display:flex;align-items:center;gap:2px;flex:1;justify-content:center;margin:0 24px;}
+.nav-links a{font-size:12.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;padding:6px 13px;border-radius:30px;transition:all .22s;white-space:nowrap;}
+.nav-links a:hover{background:var(--gold-pale);color:var(--gold);}
+.nav-links a.active{background:var(--gold);color:#fff;box-shadow:0 2px 12px rgba(201,151,58,.4);}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--text);font-size:17px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.icon-btn:hover{background:var(--gold-pale);color:var(--gold);}
+.cart-btn{background:var(--gold)!important;color:#fff!important;position:relative;}
+.cart-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--dark2);color:#fff;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid var(--gold-pale);padding:16px 28px;gap:4px;position:absolute;top:68px;left:0;right:0;z-index:999;box-shadow:0 10px 30px rgba(0,0,0,.1);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:14px;font-weight:600;padding:11px 0;border-bottom:1px solid var(--gold-pale);letter-spacing:.4px;transition:color .2s;}
+.mobile-menu a:hover{color:var(--gold);}
+.scent-strip{display:flex;gap:10px;overflow-x:auto;padding:16px 56px;background:#fff;border-bottom:1px solid var(--gold-pale);}
+.scent-pill{flex-shrink:0;padding:9px 20px;border-radius:30px;border:1.5px solid var(--gold-pale);background:var(--cream);font-size:12.5px;font-weight:600;color:var(--text);cursor:pointer;transition:.2s;white-space:nowrap;}
+.scent-pill:hover{border-color:var(--gold);}
+.scent-pill.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.cat-page-hero{background:linear-gradient(110deg,var(--dark2) 55%,#2a1f0f 100%);padding:44px 56px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.cat-page-hero-text .breadcrumb{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:10px;}
+.cat-page-hero-text .breadcrumb a{color:rgba(255,255,255,.4);}
+.cat-page-hero-text .breadcrumb a:hover{color:var(--gold-light);}
+.cat-page-hero-text .breadcrumb span{color:var(--gold);}
+.cat-page-hero-text h1{font-family:'Playfair Display',serif;font-size:40px;color:#fff;line-height:1.1;margin-bottom:8px;}
+.cat-page-hero-text h1 em{color:var(--gold-light);font-style:italic;}
+.cat-page-hero-text p{font-size:14px;color:rgba(255,255,255,.65);max-width:420px;line-height:1.7;}
+.cat-page-hero-stats{display:flex;gap:30px;}
+.stat-item{text-align:center;}
+.stat-item .num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold-light);}
+.stat-item .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.cat-page-body{display:grid;grid-template-columns:240px 1fr;gap:28px;padding:36px 56px;}
+.filter-panel{background:#fff;border-radius:12px;padding:22px;box-shadow:var(--shadow);height:fit-content;position:sticky;top:86px;}
+.filter-panel h3{font-family:'Playfair Display',serif;font-size:16px;color:var(--dark2);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--gold-pale);}
+.filter-group{margin-bottom:22px;}
+.filter-group h4{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.filter-option{display:flex;align-items:center;gap:8px;margin-bottom:9px;cursor:pointer;}
+.filter-option input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer;}
+.filter-option label{font-size:13px;color:var(--text);cursor:pointer;flex:1;}
+.filter-option .count{font-size:11px;color:var(--muted);}
+.price-range{display:flex;gap:8px;align-items:center;}
+.price-input{width:80px;padding:7px 10px;border:1.5px solid var(--gold-pale);border-radius:6px;font-size:12px;font-family:'Raleway',sans-serif;color:var(--text);}
+.price-input:focus{outline:none;border-color:var(--gold);}
+.filter-apply{width:100%;padding:10px;background:var(--gold);color:#fff;border:none;border-radius:6px;font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;margin-top:6px;}
+.filter-apply:hover{background:var(--dark2);}
+.sort-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.sort-bar .result-count{font-size:13px;color:var(--muted);}
+.sort-bar .result-count strong{color:var(--text);}
+.sort-select{padding:8px 14px;border:1.5px solid var(--gold-pale);border-radius:6px;font-family:'Raleway',sans-serif;font-size:12.5px;color:var(--text);cursor:pointer;background:#fff;}
+.sort-select:focus{outline:none;border-color:var(--gold);}
+.cat-product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.product-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:transform .32s,box-shadow .32s;cursor:pointer;}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.product-img-wrap{position:relative;overflow:hidden;height:230px;background:#f0ebe2;}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.product-card:hover .product-img-wrap img{transform:scale(1.08);}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--gold);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:3px;}
+.product-badge.sale{background:#c0392b;}
+.wishlist-btn{position:absolute;top:10px;right:10px;background:#fff;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.12);opacity:0;transition:opacity .3s;}
+.product-card:hover .wishlist-btn{opacity:1;}
+.product-info{padding:14px 16px 18px;}
+.product-cat{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px;}
+.product-info h4{font-family:'Playfair Display',serif;font-size:15px;color:var(--dark2);margin-bottom:4px;}
+.product-desc{font-size:12px;color:var(--muted);margin-bottom:6px;line-height:1.5;}
+.product-rating{font-size:11.5px;color:var(--gold);margin-bottom:10px;}
+.product-rating span{color:var(--muted);}
+.product-footer{display:flex;justify-content:space-between;align-items:center;}
+.product-price{font-size:16px;font-weight:700;color:var(--gold);}
+.product-price small{font-size:11.5px;color:var(--muted);text-decoration:line-through;margin-left:4px;font-weight:400;}
+.add-btn{background:var(--dark2);color:#fff;border:none;padding:7px 13px;border-radius:4px;font-size:10.5px;font-weight:700;letter-spacing:.7px;cursor:pointer;transition:.2s;font-family:'Raleway',sans-serif;}
+.add-btn:hover{background:var(--gold);}
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:36px;}
+.page-btn{width:38px;height:38px;border-radius:8px;border:1.5px solid var(--gold-pale);background:#fff;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.page-btn:hover{border-color:var(--gold);}
+.page-btn.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+footer.footer{background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:26px;font-size:12.5px;}
+footer.footer a{color:var(--gold);}
+
+/* ═══ PRODUCT OPTIONS MODAL ══════════════════════════ */
+.modal-overlay{position:fixed;inset:0;background:rgba(13,10,5,.6);backdrop-filter:blur(3px);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+.modal-overlay.show{opacity:1;pointer-events:auto;}
+.product-modal{background:#fff;border-radius:16px;max-width:820px;width:100%;max-height:88vh;overflow-y:auto;display:grid;grid-template-columns:280px 1fr;box-shadow:0 30px 80px rgba(0,0,0,.35);transform:translateY(18px);transition:transform .3s ease;}
+.modal-overlay.show .product-modal{transform:translateY(0);}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.55);color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.modal-close:hover{background:var(--gold);}
+.modal-img{position:relative;background:#f0ebe2;min-height:220px;}
+.modal-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.modal-body{padding:28px 30px;}
+.modal-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;}
+.modal-body h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--dark2);margin-bottom:6px;line-height:1.2;}
+.modal-price{font-size:16px;font-weight:700;color:var(--gold);margin-bottom:20px;}
+.modal-group{margin-bottom:20px;}
+.modal-group h4{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px;}
+.option-row{display:flex;flex-wrap:wrap;gap:8px;}
+.opt-btn{padding:8px 15px;border-radius:8px;border:1.5px solid var(--gold-pale);background:var(--cream);font-size:12.5px;font-weight:600;color:var(--text);cursor:pointer;transition:.2s;font-family:'Raleway',sans-serif;}
+.opt-btn:hover{border-color:var(--gold);}
+.opt-btn.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.opt-btn small{font-weight:600;opacity:.85;}
+.qty-control{display:inline-flex;align-items:center;gap:0;border:1.5px solid var(--gold-pale);border-radius:8px;overflow:hidden;}
+.qty-control button{width:36px;height:36px;background:var(--cream);border:none;font-size:16px;font-weight:700;color:var(--text);cursor:pointer;transition:.2s;}
+.qty-control button:hover{background:var(--gold);color:#fff;}
+.qty-control span{width:40px;text-align:center;font-size:14px;font-weight:700;}
+.modal-add-btn{width:100%;padding:14px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'Raleway',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;margin-top:6px;}
+.modal-add-btn:hover{background:var(--dark2);}
+@media(max-width:640px){.product-modal{grid-template-columns:1fr;}.modal-img{min-height:180px;}}
+
+.toast{position:fixed;bottom:28px;right:28px;background:var(--dark2);color:#fff;padding:13px 20px;border-radius:10px;font-size:13px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.3);border-left:4px solid var(--gold);transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);z-index:9999;display:flex;align-items:center;gap:10px;}
+.toast.show{transform:translateX(0);}
+.toast-icon{font-size:18px;}
+@media(max-width:1100px){.cat-product-grid{grid-template-columns:repeat(2,1fr);}.filter-panel{display:none;}.cat-page-body{grid-template-columns:1fr;padding:24px;}}
+@media(max-width:900px){.navbar{padding:0 18px;}.nav-links{display:none;}.hamburger{display:flex;}.scent-strip,.cat-page-hero{padding-left:22px;padding-right:22px;}}
+@media(max-width:600px){.cat-product-grid{grid-template-columns:1fr;}.cat-page-hero-stats{flex-wrap:wrap;gap:16px;}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">✦ Free delivery on orders above KES 2,500 &nbsp;|&nbsp; New arrivals every Friday ✦</div>
+
+<nav class="navbar" id="navbar">
+  
+     <a href="index.html" class="logo">
+   
+  <img src="/824018063112009913.jpg" alt="Al-Noor" class="logo-img">
+  <div class="logo-text">
+    <span class="name">Al-Noor</span>
+    <span class="tagline">Modest Wear · Eldoret</span>
+  </div>
+    
+  </a>
+  <div class="nav-links">
+    <a href="/Homes.html">Home</a>
+    <a href="/her.html">Women</a>
+    <a href="/men.html">Men</a>
+    <a href="/kids.html" class="active">Kids</a>
+    <a href="/perfumes.html">Perfumes</a>
+    <a href="/carpets.html">Carpets</a>
+    <a href="/sprorts.html">Sports</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="icon-btn" title="Search" onclick="alert('Search coming soon!')">🔍</button>
+    <button class="icon-btn cart-btn" title="Cart" onclick="alert('Cart: ' + cartCount + ' items')">🛒
+      <span class="badge" id="cartBadge">0</span>
+    </button>
+    <button class="hamburger" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/home.html">Home</a>
+  <a href="/her.html">Women</a>
+  <a href="/men.html">Men</a>
+  <a href="/kids.html">Kids</a>
+  <a href="perfumes.html">Perfumes</a>
+  <a href="carpets.html">Carpets</a>
+  <a href="/sprorts.html">Sports</a>
+  <a href="/contact.html">Contact</a>
+</div>
+
+<div class="cat-page-hero">
+  <div class="cat-page-hero-text">
+    <div class="breadcrumb"><a href="index.html">Home</a> / <span>Kids</span></div>
+    <h1>Modest Wear <em>for Kids</em></h1>
+    <p>Soft, durable sets for children — from everyday hijabs to Eid outfits.</p>
+  </div>
+  <div class="cat-page-hero-stats">
+    <div class="stat-item"><div class="num">25+</div><div class="lbl">Styles</div></div>
+    <div class="stat-item"><div class="num">100%</div><div class="lbl">Soft Cotton</div></div>
+    <div class="stat-item"><div class="num">⭐ 4.7</div><div class="lbl">Avg Rating</div></div>
+  </div>
+</div>
+
+<div class="scent-strip">
+  <button class="scent-pill active" onclick="filterCat(this,'all')">All</button>
+  <button class="scent-pill" onclick="filterCat(this,'girls')">Girls Sets</button>
+  <button class="scent-pill" onclick="filterCat(this,'boys')">Boys Thobes</button>
+  <button class="scent-pill" onclick="filterCat(this,'hijab')">Kids Hijabs</button>
+  <button class="scent-pill" onclick="filterCat(this,'eid')">Eid Wear</button>
+</div>
+
+<div class="cat-page-body">
+  <div class="filter-panel">
+    <h3>Filter</h3>
+    <div class="filter-group">
+      <h4>Category</h4>
+      <div class="filter-option"><input type="checkbox" id="k-girls" checked><label for="k-girls">Girls Sets</label><span class="count">(2)</span></div>
+      <div class="filter-option"><input type="checkbox" id="k-boys"><label for="k-boys">Boys Thobes</label><span class="count">(2)</span></div>
+      <div class="filter-option"><input type="checkbox" id="k-hijab"><label for="k-hijab">Kids Hijabs</label><span class="count">(2)</span></div>
+      <div class="filter-option"><input type="checkbox" id="k-eid"><label for="k-eid">Eid Wear</label><span class="count">(3)</span></div>
+    </div>
+    <div class="filter-group">
+      <h4>Age Range</h4>
+      <div class="filter-option"><input type="checkbox" id="k-2-4"><label for="k-2-4">2–4 yrs</label></div>
+      <div class="filter-option"><input type="checkbox" id="k-5-7"><label for="k-5-7">5–7 yrs</label></div>
+      <div class="filter-option"><input type="checkbox" id="k-8-12"><label for="k-8-12">8–12 yrs</label></div>
+    </div>
+    <div class="filter-group">
+      <h4>Price Range (KES)</h4>
+      <div class="price-range">
+        <input type="number" class="price-input" placeholder="Min" value="150">
+        <span>–</span>
+        <input type="number" class="price-input" placeholder="Max" value="3000">
+      </div>
+    </div>
+    <button class="filter-apply">Apply Filters</button>
+  </div>
+
+  <div>
+    <div class="sort-bar">
+      <div class="result-count">Showing <strong id="resultCount">9</strong> pieces</div>
+      <select class="sort-select">
+        <option>Sort: Newest First</option>
+        <option>Price: Low to High</option>
+        <option>Best Selling</option>
+      </select>
+    </div>
+
+    <div class="cat-product-grid" id="productGrid">
+
+      <div class="product-card" data-cat="girls" data-colors="Pink,Lilac,White,Black" data-sizes="2-4,5-7,8-12" data-fabrics="Cotton,Chiffon,Satin" data-regions="Local:0,Arabian:300,Turkish:400,Pakistani:200,Saudi:350,African:150,European:600">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1503457574465-3e3fadb31071?w=500&q=80" alt="">
+          <span class="product-badge">Popular</span><button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Girls Sets</div>
+          <h4>Girls Abaya & Hijab Set</h4>
+          <p class="product-desc">Matching two-piece, ages 5–10</p>
+          <div class="product-rating">★★★★★ <span>(58)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 1,800</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="girls" data-colors="Pink,Lilac,White,Black" data-sizes="2-4,5-7,8-12" data-fabrics="Cotton,Chiffon,Satin" data-regions="Local:0,Arabian:300,Turkish:400,Pakistani:200,Saudi:350,African:150,European:600">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1519457851881-e2f5f6cc7d24?w=500&q=80" alt="">
+          <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Girls Sets</div>
+          <h4>Girls Two-Piece Set</h4>
+          <p class="product-desc">Tunic & trouser set, ages 4–9</p>
+          <div class="product-rating">★★★★☆ <span>(24)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 1,500</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="boys" data-colors="White,Black,Navy" data-sizes="2-4,5-7,8-12" data-fabrics="Cotton,Cotton-Blend" data-regions="Local:0,Arabian:250,Turkish:350,Pakistani:150,Saudi:300,African:120,European:500">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=500&q=80" alt="">
+          <span class="product-badge">New</span><button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Boys Thobes</div>
+          <h4>Boys Junior Thobe</h4>
+          <p class="product-desc">Lightweight cotton, ages 4–12</p>
+          <div class="product-rating">★★★★★ <span>(36)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 1,600</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="boys" data-colors="White,Black,Navy" data-sizes="2-4,5-7,8-12" data-fabrics="Cotton,Cotton-Blend" data-regions="Local:0,Arabian:250,Turkish:350,Pakistani:150,Saudi:300,African:120,European:500">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=500&q=80" alt="">
+          <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Boys Thobes</div>
+          <h4>Boys Kufi Cap</h4>
+          <p class="product-desc">Soft cotton, sized for children</p>
+          <div class="product-rating">★★★★☆ <span>(21)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 250</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="hijab" data-colors="Black,White,Pink,Lilac,Grey" data-sizes="Toddler (2-5),Kids (6-12)" data-fabrics="Jersey,Chiffon,Modal" data-regions="Local:0,Arabian:150,Turkish:200,Pakistani:100,Saudi:180,African:80,European:300">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=500&q=80" alt="">
+          <span class="product-badge">Easy Wear</span><button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kids Hijabs</div>
+          <h4>Pull-On Kids Hijab</h4>
+          <p class="product-desc">Stretch jersey, easy for little ones</p>
+          <div class="product-rating">★★★★★ <span>(64)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 450</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="hijab" data-colors="Black,White,Pink,Lilac,Grey" data-sizes="Toddler (2-5),Kids (6-12)" data-fabrics="Jersey,Chiffon,Modal" data-regions="Local:0,Arabian:150,Turkish:200,Pakistani:100,Saudi:180,African:80,European:300">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=500&q=80" alt="">
+          <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kids Hijabs</div>
+          <h4>Toddler Hijab Cap</h4>
+          <p class="product-desc">Soft cap-style, ages 2–5</p>
+          <div class="product-rating">★★★★☆ <span>(17)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 350</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="eid" data-colors="Gold,Emerald,Maroon,White" data-sizes="2-4,5-7,8-12" data-fabrics="Satin,Silk-Blend,Velvet" data-regions="Local:0,Arabian:400,Turkish:500,Pakistani:250,Saudi:450,African:180,European:700">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=80" alt="">
+          <span class="product-badge">Eid Special</span><button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Eid Wear</div>
+          <h4>Girls Eid Dress</h4>
+          <p class="product-desc">Satin trim, festive colours</p>
+          <div class="product-rating">★★★★★ <span>(33)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 2,200</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="eid" data-colors="Gold,Emerald,Maroon,White" data-sizes="2-4,5-7,8-12" data-fabrics="Satin,Silk-Blend,Velvet" data-regions="Local:0,Arabian:400,Turkish:500,Pakistani:250,Saudi:450,African:180,European:700">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&q=80" alt="">
+          <span class="product-badge sale">Sale</span><button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Eid Wear</div>
+          <h4>Boys Eid Thobe Set</h4>
+          <p class="product-desc">Thobe, kufi & belt — gift boxed</p>
+          <div class="product-rating">★★★★★ <span>(28)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 2,400 <small>2,900</small></span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="eid" data-colors="Gold,Emerald,Maroon,White" data-sizes="2-4,5-7,8-12" data-fabrics="Satin,Silk-Blend,Velvet" data-regions="Local:0,Arabian:400,Turkish:500,Pakistani:250,Saudi:450,African:180,European:700">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=80" alt="">
+          <button class="wishlist-btn" onclick="event.stopPropagation();">♡</button>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Eid Wear</div>
+          <h4>Kids Prayer Set</h4>
+          <p class="product-desc">Lightweight two-piece for young ones</p>
+          <div class="product-rating">★★★★☆ <span>(15)</span></div>
+          <div class="product-footer">
+            <span class="product-price">KES 1,900</span>
+            <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pagination">
+      <button class="page-btn">‹</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">›</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; 2026 Al-Noor Modest Wear, Eldoret. &nbsp;|&nbsp; <a href="index.html">Back to Home</a>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="product-modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img"><img id="modalImg" src="" alt=""></div>
+    <div class="modal-body">
+      <div class="modal-cat" id="modalCat"></div>
+      <h3 id="modalName"></h3>
+      <div class="modal-price" id="modalPrice"></div>
+
+      <div class="modal-group" id="modalColorGroup">
+        <h4>Color</h4>
+        <div class="option-row" id="modalColors"></div>
+      </div>
+      <div class="modal-group" id="modalSizeGroup">
+        <h4>Age</h4>
+        <div class="option-row" id="modalSizes"></div>
+      </div>
+      <div class="modal-group" id="modalFabricGroup">
+        <h4>Fabric</h4>
+        <div class="option-row" id="modalFabrics"></div>
+      </div>
+      <div class="modal-group">
+        <h4>Region</h4>
+        <div class="option-row" id="modalRegion"></div>
+      </div>
+      <div class="modal-group">
+        <h4>Quantity</h4>
+        <div class="qty-control">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="modalQty">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+
+      <button class="modal-add-btn" onclick="confirmAddToCart()">Add to Cart — <span id="modalTotal"></span></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <span class="toast-icon">✓</span>
+  <span id="toastMsg">Added to cart!</span>
+</div>
+
+<script>
+let cartCount = 0;
+let toastTimer;
+function addToCart(item, qty) {
+  qty = qty || 1;
+  cartCount += qty;
+  document.getElementById('cartBadge').textContent = cartCount;
+  document.getElementById('toastMsg').textContent = `"${item}" added to cart!`;
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+function toggleMenu() {
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
+function filterCat(btn, cat) {
+  document.querySelectorAll('.scent-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('.product-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const match = cat === 'all' || card.dataset.cat === cat;
+    card.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  document.getElementById('resultCount').textContent = visible;
+}
+
+/* ═══ PRODUCT OPTIONS MODAL (Pizza-Inn style picker) ═══ */
+let currentProduct = {};
+
+function openProductModal(btn) {
+  const card = btn.closest('.product-card');
+  const name = card.querySelector('h4').textContent;
+  const cat = card.querySelector('.product-cat').textContent;
+  const img = card.querySelector('.product-img-wrap img').src;
+  const priceText = card.querySelector('.product-price').childNodes[0].textContent;
+  const price = parseInt(priceText.replace(/[^0-9]/g, ''), 10);
+  const colors = (card.dataset.colors || '').split(',').map(s => s.trim()).filter(Boolean);
+  const sizes = (card.dataset.sizes || '').split(',').map(s => s.trim()).filter(Boolean);
+  const fabrics = (card.dataset.fabrics || '').split(',').map(s => s.trim()).filter(Boolean);
+  const regions = (card.dataset.regions || 'Local:0').split(',').map(pair => {
+    const [label, fee] = pair.split(':');
+    return [label.trim(), parseInt(fee, 10) || 0];
+  });
+
+  currentProduct = { name, cat, price, color: colors[0] || null, size: sizes[0] || null, fabric: fabrics[0] || null, region: regions[0][0], regionFee: regions[0][1], qty: 1 };
+
+  document.getElementById('modalImg').src = img;
+  document.getElementById('modalCat').textContent = cat;
+  document.getElementById('modalName').textContent = name;
+
+  const colorGroup = document.getElementById('modalColorGroup');
+  const colorRow = document.getElementById('modalColors');
+  colorRow.innerHTML = '';
+  if (colors.length) {
+    colorGroup.style.display = '';
+    colors.forEach((c, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt-btn' + (i === 0 ? ' active' : '');
+      b.textContent = c;
+      b.onclick = () => selectOption('color', c, b);
+      colorRow.appendChild(b);
+    });
+  } else {
+    colorGroup.style.display = 'none';
+  }
+
+  const sizeGroup = document.getElementById('modalSizeGroup');
+  const sizeRow = document.getElementById('modalSizes');
+  sizeRow.innerHTML = '';
+  if (sizes.length) {
+    sizeGroup.style.display = '';
+    sizes.forEach((s, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt-btn' + (i === 0 ? ' active' : '');
+      b.textContent = s;
+      b.onclick = () => selectOption('size', s, b);
+      sizeRow.appendChild(b);
+    });
+  } else {
+    sizeGroup.style.display = 'none';
+  }
+
+  const fabricGroup = document.getElementById('modalFabricGroup');
+  const fabricRow = document.getElementById('modalFabrics');
+  fabricRow.innerHTML = '';
+  if (fabrics.length) {
+    fabricGroup.style.display = '';
+    fabrics.forEach((f, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt-btn' + (i === 0 ? ' active' : '');
+      b.textContent = f;
+      b.onclick = () => selectOption('fabric', f, b);
+      fabricRow.appendChild(b);
+    });
+  } else {
+    fabricGroup.style.display = 'none';
+  }
+
+  const regionRow = document.getElementById('modalRegion');
+  regionRow.innerHTML = '';
+  regions.forEach((r, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'opt-btn' + (i === 0 ? ' active' : '');
+    b.innerHTML = r[0] + (r[1] > 0 ? ` <small>+KES ${r[1].toLocaleString()}</small>` : '');
+    b.onclick = () => {
+      currentProduct.region = r[0];
+      currentProduct.regionFee = r[1];
+      [...regionRow.children].forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      updateModalPrice();
+    };
+    regionRow.appendChild(b);
+  });
+
+  currentProduct.qty = 1;
+  document.getElementById('modalQty').textContent = '1';
+  updateModalPrice();
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function selectOption(type, val, btn) {
+  currentProduct[type] = val;
+  btn.parentElement.querySelectorAll('.opt-btn').forEach(x => x.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function changeQty(delta) {
+  currentProduct.qty = Math.max(1, (currentProduct.qty || 1) + delta);
+  document.getElementById('modalQty').textContent = currentProduct.qty;
+  updateModalPrice();
+}
+
+function updateModalPrice() {
+  const unit = currentProduct.price + (currentProduct.regionFee || 0);
+  const total = unit * (currentProduct.qty || 1);
+  document.getElementById('modalPrice').textContent = `KES ${unit.toLocaleString()}`;
+  document.getElementById('modalTotal').textContent = `KES ${total.toLocaleString()}`;
+}
+
+function closeModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+function confirmAddToCart() {
+  const details = [];
+  if (currentProduct.color) details.push(currentProduct.color);
+  if (currentProduct.size) details.push(currentProduct.size);
+  if (currentProduct.fabric) details.push(currentProduct.fabric);
+  if (currentProduct.region) details.push(currentProduct.region);
+  let desc = currentProduct.name + (details.length ? ' (' + details.join(', ') + ')' : '');
+  if (currentProduct.qty > 1) desc += ' ×' + currentProduct.qty;
+  addToCart(desc, currentProduct.qty);
+  closeModal();
+}
+</script>
+
+</body>
+</html>
