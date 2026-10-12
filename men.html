@@ -172,9 +172,11 @@ footer.footer a{color:var(--gold);}
   </div>
   <div class="nav-actions">
     <button class="icon-btn" title="Search" onclick="alert('Search coming soon!')">🔍</button>
-    <button class="icon-btn cart-btn" title="Cart" onclick="alert('Cart: ' + cartCount + ' items')">🛒
-      <span class="badge" id="cartBadge">0</span>
-    </button>
+<button class="icon-btn cart-btn" title="Cart" onclick="window.location.href='cart.html'">
+  🛒
+  <span class="badge" id="cartBadge">0</span>
+</button>
+    
     <button class="hamburger" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -643,25 +645,17 @@ footer.footer a{color:var(--gold);}
 </div>
 
 <script>
-let cartCount = 0;
-let toastTimer;
-function addToCart(item, qty) {
-  qty = qty || 1;
-  cartCount += qty;
-  document.getElementById('cartBadge').textContent = cartCount;
-  document.getElementById('toastMsg').textContent = `"${item}" added to cart!`;
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
-}
+  let toastTimer;
+
 function toggleMenu() {
   document.getElementById('ham').classList.toggle('open');
   document.getElementById('mobileMenu').classList.toggle('open');
 }
+
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
 });
+
 function filterCat(btn, cat) {
   document.querySelectorAll('.scent-pill').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
@@ -675,7 +669,7 @@ function filterCat(btn, cat) {
   document.getElementById('resultCount').textContent = visible;
 }
 
-/* ═══ PRODUCT OPTIONS MODAL () ═══ */
+/* ═══ PRODUCT OPTIONS MODAL ═══ */
 let currentProduct = {};
 
 function openProductModal(btn) {
@@ -693,7 +687,18 @@ function openProductModal(btn) {
     return [label.trim(), parseInt(fee, 10) || 0];
   });
 
-  currentProduct = { name, cat, price, color: colors[0] || null, size: sizes[0] || null, fabric: fabrics[0] || null, region: regions[0][0], regionFee: regions[0][1], qty: 1 };
+  currentProduct = {
+    name,
+    cat,
+    price,
+    image: img,
+    color: colors[0] || null,
+    size: sizes[0] || null,
+    fabric: fabrics[0] || null,
+    region: regions[0][0],
+    regionFee: regions[0][1],
+    qty: 1
+  };
 
   document.getElementById('modalImg').src = img;
   document.getElementById('modalCat').textContent = cat;
@@ -702,6 +707,7 @@ function openProductModal(btn) {
   const colorGroup = document.getElementById('modalColorGroup');
   const colorRow = document.getElementById('modalColors');
   colorRow.innerHTML = '';
+
   if (colors.length) {
     colorGroup.style.display = '';
     colors.forEach((c, i) => {
@@ -719,6 +725,7 @@ function openProductModal(btn) {
   const sizeGroup = document.getElementById('modalSizeGroup');
   const sizeRow = document.getElementById('modalSizes');
   sizeRow.innerHTML = '';
+
   if (sizes.length) {
     sizeGroup.style.display = '';
     sizes.forEach((s, i) => {
@@ -736,6 +743,7 @@ function openProductModal(btn) {
   const fabricGroup = document.getElementById('modalFabricGroup');
   const fabricRow = document.getElementById('modalFabrics');
   fabricRow.innerHTML = '';
+
   if (fabrics.length) {
     fabricGroup.style.display = '';
     fabrics.forEach((f, i) => {
@@ -752,11 +760,13 @@ function openProductModal(btn) {
 
   const regionRow = document.getElementById('modalRegion');
   regionRow.innerHTML = '';
+
   regions.forEach((r, i) => {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'opt-btn' + (i === 0 ? ' active' : '');
     b.innerHTML = r[0] + (r[1] > 0 ? ` <small>+KES ${r[1].toLocaleString()}</small>` : '');
+
     b.onclick = () => {
       currentProduct.region = r[0];
       currentProduct.regionFee = r[1];
@@ -764,6 +774,7 @@ function openProductModal(btn) {
       b.classList.add('active');
       updateModalPrice();
     };
+
     regionRow.appendChild(b);
   });
 
@@ -798,17 +809,47 @@ function closeModal(e) {
 }
 
 function confirmAddToCart() {
-  const details = [];
-  if (currentProduct.color) details.push(currentProduct.color);
-  if (currentProduct.size) details.push('Size ' + currentProduct.size);
-  if (currentProduct.fabric) details.push(currentProduct.fabric);
-  if (currentProduct.region) details.push(currentProduct.region);
-  let desc = currentProduct.name + (details.length ? ' (' + details.join(', ') + ')' : '');
-  if (currentProduct.qty > 1) desc += ' ×' + currentProduct.qty;
-  addToCart(desc, currentProduct.qty);
+  const product = {
+    id: currentProduct.name,
+    name: currentProduct.name,
+    category: currentProduct.cat,
+    price: currentProduct.price + (currentProduct.regionFee || 0),
+    image: currentProduct.image,
+    options: {
+      color: currentProduct.color,
+      size: currentProduct.size,
+      fabric: currentProduct.fabric,
+      region: currentProduct.region
+    },
+    quantity: currentProduct.qty
+  };
+
+  const existingProduct = cart.find(item =>
+    item.id === product.id &&
+    JSON.stringify(item.options || {}) === JSON.stringify(product.options || {})
+  );
+
+  if (existingProduct) {
+    existingProduct.quantity += product.quantity;
+  } else {
+    cart.push(product);
+  }
+
+  saveCart();
+
+  document.getElementById('toastMsg').textContent =
+    `"${product.name}" added to cart!`;
+
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+
   closeModal();
 }
 </script>
 
+<script src="cart.js"></script>
 </body>
 </html>

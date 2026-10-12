@@ -1,860 +1,134 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Sports & Activewear – Al-Noor</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-   BASIC
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-:root{
-    --gold:#c9973a;
-    --gold-light:#e8c46a;
-    --gold-pale:#f5e6c0;
-    --dark:#0d0d0d;
-    --dark2:#1a1612;
-    --cream:#f8f4ee;
-    --text:#2a2318;
-    --muted:#7a6b55;
-    --white:#fff;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:var(--cream);
-    color:var(--text);
-    font-family:'Raleway',sans-serif;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-/* =========================
-   TOP BAR
-========================= */
-
-.top-bar{
-    background:var(--dark2);
-    color:var(--gold-light);
-    font-size:11px;
-    text-align:center;
-    padding:8px 15px;
-    letter-spacing:1px;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    height:68px;
-    background:#fff;
-    border-bottom:1px solid var(--gold-pale);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 45px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.logo-img{
-    height:42px;
-    width:auto;
-}
-
-.logo-text .name{
-    display:block;
-    font-family:'Playfair Display',serif;
-    font-size:19px;
-    font-weight:700;
-}
-
-.logo-text .tagline{
-    display:block;
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:2px;
-    font-weight:700;
-}
-
-/* NAV LINKS */
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:3px;
-}
-
-.nav-links a{
-    font-size:12px;
-    font-weight:600;
-    padding:8px 12px;
-    border-radius:20px;
-}
-
-.nav-links a:hover{
-    background:var(--gold-pale);
-    color:var(--gold);
-}
-
-.nav-links a.active{
-    background:var(--gold);
-    color:white;
-}
-
-/* NAV ACTIONS */
-
-.nav-actions{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.icon-btn{
-    border:0;
-    background:none;
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    cursor:pointer;
-    font-size:17px;
-}
-
-.icon-btn:hover{
-    background:var(--gold-pale);
-}
-
-.cart-btn{
-    background:var(--gold);
-    color:white;
-    position:relative;
-}
-
-.badge{
-    position:absolute;
-    top:-4px;
-    right:-4px;
-    width:17px;
-    height:17px;
-    border-radius:50%;
-    background:var(--dark2);
-    color:white;
-    font-size:9px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-/* HAMBURGER */
-
-.hamburger{
-    display:none;
-    border:0;
-    background:none;
-    cursor:pointer;
-}
-
-.hamburger span{
-    display:block;
-    width:23px;
-    height:2px;
-    background:var(--text);
-    margin:5px;
-}
-
-/* MOBILE MENU */
-
-.mobile-menu{
-    display:none;
-    background:white;
-    padding:15px 25px;
-    position:absolute;
-    top:68px;
-    left:0;
-    right:0;
-    z-index:999;
-}
-
-.mobile-menu.open{
-    display:flex;
-    flex-direction:column;
-}
-
-.mobile-menu a{
-    padding:12px 0;
-    border-bottom:1px solid var(--gold-pale);
-    font-weight:600;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.cat-page-hero{
-    background:linear-gradient(110deg,var(--dark2),#2a1f0f);
-    padding:45px 55px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:25px;
-}
-
-.breadcrumb{
-    color:#aaa;
-    font-size:11px;
-    margin-bottom:10px;
-}
-
-.breadcrumb span{
-    color:var(--gold);
-}
-
-.cat-page-hero h1{
-    color:white;
-    font-family:'Playfair Display',serif;
-    font-size:40px;
-    margin-bottom:10px;
-}
-
-.cat-page-hero h1 em{
-    color:var(--gold-light);
-}
-
-.cat-page-hero p{
-    color:#bbb;
-    font-size:14px;
-    line-height:1.7;
-    max-width:500px;
-}
-
-.cat-page-hero-stats{
-    display:flex;
-    gap:30px;
-}
-
-.stat-item{
-    text-align:center;
-}
-
-.stat-item .num{
-    color:var(--gold-light);
-    font-family:'Playfair Display',serif;
-    font-size:27px;
-    font-weight:bold;
-}
-
-.stat-item .lbl{
-    color:#aaa;
-    font-size:10px;
-    letter-spacing:1px;
-}
-
-/* =========================
-   CATEGORY BUTTONS
-========================= */
-
-.scent-strip{
-    background:white;
-    padding:15px 50px;
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    border-bottom:1px solid var(--gold-pale);
-}
-
-.scent-pill{
-    flex-shrink:0;
-    border:1px solid var(--gold-pale);
-    background:var(--cream);
-    padding:9px 18px;
-    border-radius:30px;
-    cursor:pointer;
-    font-weight:600;
-}
-
-.scent-pill:hover{
-    border-color:var(--gold);
-}
-
-.scent-pill.active{
-    background:var(--gold);
-    color:white;
-}
-
-/* =========================
-   PAGE BODY
-========================= */
-
-.cat-page-body{
-    display:grid;
-    grid-template-columns:230px 1fr;
-    gap:25px;
-    padding:35px 55px;
-}
-
-/* FILTER */
-
-.filter-panel{
-    background:white;
-    padding:22px;
-    border-radius:12px;
-    height:max-content;
-    box-shadow:0 4px 20px rgba(0,0,0,.08);
-}
-
-.filter-panel h3{
-    font-family:'Playfair Display',serif;
-    margin-bottom:20px;
-    padding-bottom:10px;
-    border-bottom:2px solid var(--gold-pale);
-}
-
-.filter-group{
-    margin-bottom:22px;
-}
-
-.filter-group h4{
-    color:var(--gold);
-    font-size:11px;
-    letter-spacing:1px;
-    margin-bottom:12px;
-}
-
-.filter-option{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom:10px;
-    font-size:13px;
-}
-
-.filter-option input{
-    accent-color:var(--gold);
-}
-
-.price-range{
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
-
-.price-input{
-    width:80px;
-    padding:7px;
-    border:1px solid var(--gold-pale);
-    border-radius:5px;
-}
-
-.filter-apply{
-    width:100%;
-    padding:10px;
-    border:0;
-    background:var(--gold);
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
-    border-radius:5px;
-}
-
-/* =========================
-   SORT BAR
-========================= */
-
-.sort-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.result-count{
-    font-size:13px;
-    color:var(--muted);
-}
-
-.sort-select{
-    padding:8px 12px;
-    border:1px solid var(--gold-pale);
-    background:white;
-    border-radius:5px;
-}
-
-/* =========================
-   PRODUCTS
-========================= */
-
-.cat-product-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.product-card{
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 4px 20px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.product-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 12px 35px rgba(0,0,0,.15);
-}
-
-.product-img-wrap{
-    height:230px;
-    position:relative;
-    overflow:hidden;
-    background:#eee;
-}
-
-.product-img-wrap img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.5s;
-}
-
-.product-card:hover img{
-    transform:scale(1.07);
-}
-
-.product-badge{
-    position:absolute;
-    top:12px;
-    left:12px;
-    background:var(--gold);
-    color:white;
-    padding:4px 9px;
-    font-size:9px;
-    border-radius:3px;
-    font-weight:bold;
-}
-
-.product-badge.sale{
-    background:#c0392b;
-}
-
-.wishlist-btn{
-    position:absolute;
-    top:10px;
-    right:10px;
-    border:0;
-    background:white;
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.product-info{
-    padding:15px;
-}
-
-.product-cat{
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:2px;
-    font-weight:bold;
-    margin-bottom:5px;
-}
-
-.product-info h4{
-    font-family:'Playfair Display',serif;
-    font-size:16px;
-    margin-bottom:5px;
-}
-
-.product-desc{
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.5;
-    margin-bottom:7px;
-}
-
-.product-rating{
-    color:var(--gold);
-    font-size:12px;
-    margin-bottom:10px;
-}
-
-.product-rating span{
-    color:var(--muted);
-}
-
-.product-footer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.product-price{
-    color:var(--gold);
-    font-weight:bold;
-    font-size:16px;
-}
-
-.add-btn{
-    background:var(--dark2);
-    color:white;
-    border:0;
-    padding:8px 13px;
-    border-radius:4px;
-    cursor:pointer;
-}
-
-.add-btn:hover{
-    background:var(--gold);
-}
-
-/* =========================
-   PAGINATION
-========================= */
-
-.pagination{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin-top:35px;
-}
-
-.page-btn{
-    width:38px;
-    height:38px;
-    border:1px solid var(--gold-pale);
-    background:white;
-    border-radius:7px;
-    cursor:pointer;
-}
-
-.page-btn.active{
-    background:var(--gold);
-    color:white;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-    background:var(--dark);
-    color:#aaa;
-    text-align:center;
-    padding:25px;
-    font-size:12px;
-}
-
-.footer a{
-    color:var(--gold);
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:var(--dark2);
-    color:white;
-    padding:14px 20px;
-    border-radius:8px;
-    transform:translateX(130%);
-    transition:.4s;
-    z-index:9999;
-}
-
-.toast.show{
-    transform:translateX(0);
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.65);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    opacity:0;
-    pointer-events:none;
-    transition:.3s;
-    z-index:10000;
-}
-
-.modal-overlay.show{
-    opacity:1;
-    pointer-events:auto;
-}
-
-.product-modal{
-    background:white;
-    width:100%;
-    max-width:800px;
-    max-height:90vh;
-    overflow-y:auto;
-    border-radius:15px;
-    display:grid;
-    grid-template-columns:280px 1fr;
-    position:relative;
-}
-
-.modal-img{
-    min-height:300px;
-}
-
-.modal-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.modal-body{
-    padding:30px;
-}
-
-.modal-close{
-    position:absolute;
-    top:12px;
-    right:12px;
-    border:0;
-    background:#222;
-    color:white;
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    cursor:pointer;
-}
-
-.modal-cat{
-    color:var(--gold);
-    font-size:10px;
-    letter-spacing:2px;
-    font-weight:bold;
-    margin-bottom:7px;
-}
-
-.modal-body h3{
-    font-family:'Playfair Display',serif;
-    font-size:23px;
-    margin-bottom:8px;
-}
-
-.modal-price{
-    color:var(--gold);
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.modal-group{
-    margin-bottom:20px;
-}
-
-.modal-group h4{
-    font-size:11px;
-    color:var(--muted);
-    margin-bottom:9px;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-.option-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-}
-
-.opt-btn{
-    padding:8px 13px;
-    border:1px solid var(--gold-pale);
-    background:var(--cream);
-    border-radius:7px;
-    cursor:pointer;
-}
-
-.opt-btn.active{
-    background:var(--gold);
-    color:white;
-    border-color:var(--gold);
-}
-
-.qty-control{
-    display:flex;
-    align-items:center;
-    width:max-content;
-    border:1px solid var(--gold-pale);
-    border-radius:7px;
-    overflow:hidden;
-}
-
-.qty-control button{
-    width:38px;
-    height:38px;
-    border:0;
-    cursor:pointer;
-}
-
-.qty-control span{
-    width:40px;
-    text-align:center;
-    font-weight:bold;
-}
-
-.modal-add-btn{
-    width:100%;
-    padding:14px;
-    background:var(--gold);
-    color:white;
-    border:0;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:1100px){
-
-    .cat-page-body{
-        grid-template-columns:1fr;
-        padding:25px;
-    }
-
-    .filter-panel{
-        display:none;
-    }
-
-    .cat-product-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:900px){
-
-    .navbar{
-        padding:0 18px;
-    }
-
-    .nav-links{
-        display:none;
-    }
-
-    .hamburger{
-        display:block;
-    }
-
-    .cat-page-hero{
-        padding:35px 25px;
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .scent-strip{
-        padding:15px 20px;
-    }
-}
-
-@media(max-width:600px){
-
-    .cat-product-grid{
-        grid-template-columns:1fr;
-    }
-
-    .cat-page-hero h1{
-        font-size:32px;
-    }
-
-    .cat-page-hero-stats{
-        gap:20px;
-    }
-
-    .product-modal{
-        grid-template-columns:1fr;
-    }
-
-    .modal-img{
-        height:220px;
-        min-height:0;
-    }
-
-    .logo-text{
-        display:none;
-    }
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#c9973a;--gold-light:#e8c46a;--gold-pale:#f5e6c0;--dark:#0d0d0d;--dark2:#1a1612;--cream:#f8f4ee;--text:#2a2318;--muted:#7a6b55;--white:#fff}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:Raleway,sans-serif}
+a{text-decoration:none;color:inherit}
+button,select,input{font:inherit}
+.top-bar{background:var(--dark2);color:var(--gold-light);font-size:11px;text-align:center;padding:8px 15px;letter-spacing:1px}
+.navbar{position:sticky;top:0;z-index:1000;min-height:68px;background:#fff;border-bottom:1px solid var(--gold-pale);display:flex;align-items:center;justify-content:space-between;padding:10px 35px;gap:15px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-img{height:42px;width:auto}
+.logo-text .name{display:block;font-family:'Playfair Display',serif;font-size:19px;font-weight:700}
+.logo-text .tagline{display:block;color:var(--gold);font-size:9px;letter-spacing:2px;font-weight:700}
+.nav-links{display:flex;align-items:center;gap:2px;flex-wrap:wrap}
+.nav-links a{font-size:11px;font-weight:600;padding:8px 9px;border-radius:20px}
+.nav-links a:hover{background:var(--gold-pale);color:var(--gold)}
+.nav-links a.active{background:var(--gold);color:white}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{border:0;background:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:17px}
+.icon-btn:hover{background:var(--gold-pale)}
+.cart-btn{background:var(--gold);color:white;position:relative}
+.badge{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 3px;border-radius:50px;background:var(--dark2);color:white;font-size:9px;display:flex;align-items:center;justify-content:center}
+.hamburger{display:none;border:0;background:none;cursor:pointer}
+.hamburger span{display:block;width:23px;height:2px;background:var(--text);margin:5px}
+.mobile-menu{display:none;background:white;padding:15px 25px;position:absolute;top:100%;left:0;right:0;z-index:999;box-shadow:0 8px 15px #0001}
+.mobile-menu.open{display:flex;flex-direction:column}
+.mobile-menu a{padding:12px 0;border-bottom:1px solid var(--gold-pale);font-weight:600}
+.cat-page-hero{background:linear-gradient(110deg,var(--dark2),#2a1f0f);padding:45px 55px;display:flex;justify-content:space-between;align-items:center;gap:25px}
+.breadcrumb{color:#aaa;font-size:11px;margin-bottom:10px}
+.breadcrumb span{color:var(--gold)}
+.cat-page-hero h1{color:white;font-family:'Playfair Display',serif;font-size:40px;margin-bottom:10px}
+.cat-page-hero h1 em{color:var(--gold-light)}
+.cat-page-hero p{color:#bbb;font-size:14px;line-height:1.7;max-width:500px}
+.cat-page-hero-stats{display:flex;gap:30px}
+.stat-item{text-align:center}
+.stat-item .num{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:27px;font-weight:bold}
+.stat-item .lbl{color:#aaa;font-size:10px;letter-spacing:1px}
+.scent-strip{background:white;padding:15px 50px;display:flex;gap:10px;overflow-x:auto;border-bottom:1px solid var(--gold-pale)}
+.scent-pill{flex-shrink:0;border:1px solid var(--gold-pale);background:var(--cream);padding:9px 18px;border-radius:30px;cursor:pointer;font-weight:600}
+.scent-pill:hover{border-color:var(--gold)}
+.scent-pill.active{background:var(--gold);color:white}
+.cat-page-body{display:grid;grid-template-columns:230px 1fr;gap:25px;padding:35px 55px}
+.filter-panel{background:white;padding:22px;border-radius:12px;height:max-content;box-shadow:0 4px 20px #0001}
+.filter-panel h3{font-family:'Playfair Display',serif;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--gold-pale)}
+.filter-group{margin-bottom:22px}
+.filter-group h4{color:var(--gold);font-size:11px;letter-spacing:1px;margin-bottom:12px}
+.filter-option{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px}
+.filter-option input{accent-color:var(--gold)}
+.price-range{display:flex;align-items:center;gap:6px}
+.price-input{width:80px;min-width:0;padding:7px;border:1px solid var(--gold-pale);border-radius:5px}
+.filter-apply{width:100%;padding:10px;border:0;background:var(--gold);color:white;cursor:pointer;font-weight:bold;border-radius:5px}
+.sort-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.result-count{font-size:13px;color:var(--muted)}
+.sort-select{padding:8px 12px;border:1px solid var(--gold-pale);background:white;border-radius:5px}
+.cat-product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.product-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px #0001;transition:.3s}
+.product-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px #0002}
+.product-img-wrap{height:230px;position:relative;overflow:hidden;background:#eee}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.product-card:hover .product-img-wrap img{transform:scale(1.07)}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--gold);color:white;padding:4px 9px;font-size:9px;border-radius:3px;font-weight:bold}
+.product-badge.sale{background:#c0392b}
+.wishlist-btn{position:absolute;top:10px;right:10px;border:0;background:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px}
+.product-info{padding:15px}
+.product-cat{color:var(--gold);font-size:9px;letter-spacing:2px;font-weight:bold;margin-bottom:5px}
+.product-info h4{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:5px}
+.product-desc{color:var(--muted);font-size:12px;line-height:1.5;margin-bottom:7px}
+.product-rating{color:var(--gold);font-size:12px;margin-bottom:10px}
+.product-rating span{color:var(--muted)}
+.product-footer{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.product-price{color:var(--gold);font-weight:bold;font-size:16px}
+.add-btn{background:var(--dark2);color:white;border:0;padding:8px 13px;border-radius:4px;cursor:pointer}
+.add-btn:hover{background:var(--gold)}
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:35px}
+.page-btn{width:38px;height:38px;border:1px solid var(--gold-pale);background:white;border-radius:7px;cursor:pointer}
+.page-btn.active{background:var(--gold);color:white}
+.footer{background:var(--dark);color:#aaa;text-align:center;padding:25px;font-size:12px}
+.footer a{color:var(--gold)}
+.toast{position:fixed;bottom:25px;right:25px;background:var(--dark2);color:white;padding:14px 20px;border-radius:8px;transform:translateX(150%);transition:.4s;z-index:9999;max-width:calc(100% - 40px)}
+.toast.show{transform:translateX(0)}
+.modal-overlay{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:.3s;z-index:10000}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.product-modal{background:white;width:100%;max-width:800px;max-height:90vh;overflow-y:auto;border-radius:15px;display:grid;grid-template-columns:280px 1fr;position:relative}
+.modal-img{min-height:300px;background:#eee}
+.modal-img img{width:100%;height:100%;object-fit:cover}
+.modal-body{padding:30px}
+.modal-close{position:absolute;top:12px;right:12px;border:0;background:#222;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;z-index:2}
+.modal-cat{color:var(--gold);font-size:10px;letter-spacing:2px;font-weight:bold;margin-bottom:7px}
+.modal-body h3{font-family:'Playfair Display',serif;font-size:23px;margin-bottom:8px;padding-right:20px}
+.modal-price{color:var(--gold);font-weight:bold;margin-bottom:20px}
+.modal-group{margin-bottom:20px}
+.modal-group h4{font-size:11px;color:var(--muted);margin-bottom:9px;letter-spacing:1px;text-transform:uppercase}
+.option-row{display:flex;flex-wrap:wrap;gap:8px}
+.opt-btn{padding:8px 13px;border:1px solid var(--gold-pale);background:var(--cream);border-radius:7px;cursor:pointer}
+.opt-btn.active{background:var(--gold);color:white;border-color:var(--gold)}
+.qty-control{display:flex;align-items:center;width:max-content;border:1px solid var(--gold-pale);border-radius:7px;overflow:hidden}
+.qty-control button{width:38px;height:38px;border:0;cursor:pointer;background:var(--cream)}
+.qty-control span{width:40px;text-align:center;font-weight:bold}
+.modal-add-btn{width:100%;padding:14px;background:var(--gold);color:white;border:0;border-radius:7px;cursor:pointer;font-weight:bold}
+@media(max-width:1200px){.navbar{padding:10px 18px}.nav-links a{padding:7px 6px;font-size:10px}.cat-page-body{padding:25px}.cat-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.navbar{padding:10px 18px}.nav-links{display:none}.hamburger{display:block}.cat-page-body{grid-template-columns:1fr}.filter-panel{display:none}.cat-page-hero{padding:35px 25px;flex-direction:column;align-items:flex-start}.scent-strip{padding:15px 20px}}
+@media(max-width:600px){.cat-product-grid{grid-template-columns:1fr}.cat-page-hero h1{font-size:32px}.cat-page-hero-stats{gap:20px}.product-modal{grid-template-columns:1fr}.modal-img{height:220px;min-height:0}.modal-body{padding:22px}.logo-text{display:none}.sort-bar{align-items:flex-start;flex-direction:column}.cat-page-body{padding:20px 15px}}
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     TOP BAR
-========================= -->
-
 <div class="top-bar">
-    ✦ Free delivery on orders above KES 2,500 | New arrivals every Friday ✦
+✦ Free delivery on orders above KES 2,500 | New arrivals every Friday ✦
 </div>
 
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
 <nav class="navbar">
-
     <a href="index.html" class="logo">
-
-        <img
-        src="/824018063112009913.jpg"
-        alt="Al-Noor"
-        class="logo-img">
-
+        <img src="/824018063112009913.jpg" alt="Al-Noor" class="logo-img">
         <div class="logo-text">
             <span class="name">Al-Noor</span>
             <span class="tagline">Modest Wear · Eldoret</span>
         </div>
-
     </a>
 
-
     <div class="nav-links">
-
         <a href="/Homes.html">Home</a>
         <a href="/her.html">Women</a>
         <a href="/men.html">Men</a>
@@ -863,1561 +137,639 @@ a{
         <a href="/perfumes.html">Perfumes</a>
         <a href="/carpets.html">Carpets</a>
         <a href="/contact.html">Contact</a>
-
     </div>
-
 
     <div class="nav-actions">
+        <button class="icon-btn" onclick="alert('Search coming soon!')" aria-label="Search">🔍</button>
 
-        <button
-        class="icon-btn"
-        onclick="alert('Search coming soon!')">
-        🔍
+        <button class="icon-btn cart-btn" onclick="window.location.href='cart.html'" aria-label="View cart">
+            🛒 <span class="badge" id="cartBadge">0</span>
         </button>
 
-        <button
-        class="icon-btn cart-btn"
-        onclick="alert('Cart: ' + cartCount + ' items')">
-
-            🛒
-
-            <span
-            class="badge"
-            id="cartBadge">
-            0
-            </span>
-
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+            <span></span><span></span><span></span>
         </button>
-
-        <button
-        class="hamburger"
-        onclick="toggleMenu()">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </button>
-
     </div>
 
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/Homes.html">Home</a>
+        <a href="/her.html">Women</a>
+        <a href="/men.html">Men</a>
+        <a href="/kids.html">Kids</a>
+        <a href="/sports.html">Sports</a>
+        <a href="/perfumes.html">Perfumes</a>
+        <a href="/carpets.html">Carpets</a>
+        <a href="/contact.html">Contact</a>
+    </div>
 </nav>
 
-
-<!-- MOBILE MENU -->
-
-<div class="mobile-menu" id="mobileMenu">
-
-    <a href="/Homes.html">Home</a>
-    <a href="/her.html">Women</a>
-    <a href="/men.html">Men</a>
-    <a href="/kids.html">Kids</a>
-    <a href="/sports.html">Sports</a>
-    <a href="/perfumes.html">Perfumes</a>
-    <a href="/carpets.html">Carpets</a>
-    <a href="/contact.html">Contact</a>
-
-</div>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
 <section class="cat-page-hero">
-
     <div>
-
-        <div class="breadcrumb">
-            <a href="index.html">Home</a> /
-            <span>Sports</span>
-        </div>
-
-        <h1>
-            Sports <em>& Activewear</em>
-        </h1>
-
-        <p>
-            Performance gear and activewear for training,
-            running, gym, football, basketball, cycling,
-            tennis and everyday athletes.
-        </p>
-
+        <div class="breadcrumb"><a href="index.html">Home</a> / <span>Sports</span></div>
+        <h1>Sports <em>&amp; Activewear</em></h1>
+        <p>Performance gear and activewear for training, running, gym, football, basketball, cycling, tennis and everyday athletes.</p>
     </div>
-
 
     <div class="cat-page-hero-stats">
-
-        <div class="stat-item">
-            <div class="num">20+</div>
-            <div class="lbl">Styles</div>
-        </div>
-
-        <div class="stat-item">
-            <div class="num">100%</div>
-            <div class="lbl">Quality</div>
-        </div>
-
-        <div class="stat-item">
-            <div class="num">⭐ 4.7</div>
-            <div class="lbl">Rating</div>
-        </div>
-
+        <div class="stat-item"><div class="num">20+</div><div class="lbl">Styles</div></div>
+        <div class="stat-item"><div class="num">100%</div><div class="lbl">Quality</div></div>
+        <div class="stat-item"><div class="num">⭐ 4.7</div><div class="lbl">Rating</div></div>
     </div>
-
 </section>
 
-
-<!-- =========================
-     CATEGORIES
-========================= -->
-
 <div class="scent-strip">
-
-    <button class="scent-pill active"
-    onclick="filterCat(this,'all')">
-        All
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'running')">
-        Running
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'training')">
-        Training & Gym
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'football')">
-        Football
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'basketball')">
-        Basketball
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'cycling')">
-        Cycling
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'tennis')">
-        Tennis
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'compression')">
-        Compression
-    </button>
-
-    <button class="scent-pill"
-    onclick="filterCat(this,'accessories')">
-        Sports Accessories
-    </button>
-
+    <button class="scent-pill active" onclick="filterCat(this,'all')">All</button>
+    <button class="scent-pill" onclick="filterCat(this,'running')">Running</button>
+    <button class="scent-pill" onclick="filterCat(this,'training')">Training &amp; Gym</button>
+    <button class="scent-pill" onclick="filterCat(this,'football')">Football</button>
+    <button class="scent-pill" onclick="filterCat(this,'basketball')">Basketball</button>
+    <button class="scent-pill" onclick="filterCat(this,'cycling')">Cycling</button>
+    <button class="scent-pill" onclick="filterCat(this,'tennis')">Tennis</button>
+    <button class="scent-pill" onclick="filterCat(this,'compression')">Compression</button>
+    <button class="scent-pill" onclick="filterCat(this,'accessories')">Sports Accessories</button>
 </div>
-
-
-<!-- =========================
-     BODY
-========================= -->
 
 <div class="cat-page-body">
 
+    <aside class="filter-panel">
+        <h3>Filter</h3>
 
-<!-- FILTER -->
-
-<div class="filter-panel">
-
-    <h3>Filter</h3>
-
-    <div class="filter-group">
-
-        <h4>Category</h4>
-
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>Running</label>
+        <div class="filter-group">
+            <h4>Category</h4>
+            <label class="filter-option"><input type="checkbox" value="running"> Running</label>
+            <label class="filter-option"><input type="checkbox" value="training"> Training &amp; Gym</label>
+            <label class="filter-option"><input type="checkbox" value="football"> Football</label>
+            <label class="filter-option"><input type="checkbox" value="basketball"> Basketball</label>
+            <label class="filter-option"><input type="checkbox" value="cycling"> Cycling</label>
+            <label class="filter-option"><input type="checkbox" value="tennis"> Tennis</label>
         </div>
 
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>Training & Gym</label>
+        <div class="filter-group">
+            <h4>Price Range</h4>
+            <div class="price-range">
+                <input class="price-input" id="minPrice" type="number" placeholder="Min" value="500">
+                <span>–</span>
+                <input class="price-input" id="maxPrice" type="number" placeholder="Max" value="5000">
+            </div>
         </div>
 
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>Football</label>
+        <div class="filter-group">
+            <h4>Size</h4>
+            <label class="filter-option"><input type="checkbox" value="S" class="size-filter"> S</label>
+            <label class="filter-option"><input type="checkbox" value="M" class="size-filter"> M</label>
+            <label class="filter-option"><input type="checkbox" value="L" class="size-filter"> L</label>
+            <label class="filter-option"><input type="checkbox" value="XL" class="size-filter"> XL</label>
         </div>
 
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>Basketball</label>
+        <button class="filter-apply" onclick="applyFilters()">Apply Filters</button>
+    </aside>
+
+    <main>
+        <div class="sort-bar">
+            <div class="result-count">Showing <strong id="resultCount">10</strong> pieces</div>
+            <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+                <option value="default">Sort: Default</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+                <option value="name">Name: A to Z</option>
+            </select>
         </div>
 
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>Cycling</label>
+        <div class="cat-product-grid" id="productGrid">
+
+            <div class="product-card" data-cat="running" data-colors="Black,White,Navy,Red" data-sizes="S,M,L,XL,XXL" data-fabrics="Polyester,Lightweight Mesh" data-regions="Kenya:0,China:100,Turkey:250,UAE:180,Pakistan:120,Saudi Arabia:220,Europe:400,Africa:80">
+                <div class="product-img-wrap">
+                    <img src="/image/3e6a9a615f873c24ccda52c4ff31fbd4.jpg" alt="Performance Running T-Shirt">
+                    <span class="product-badge">Best Seller</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">♡</button>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Running</div>
+                    <h4>Performance Running T-Shirt</h4>
+                    <p class="product-desc">Lightweight, breathable and sweat-wicking for long runs.</p>
+                    <div class="product-rating">★★★★★ <span>(72)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 1,800</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="training" data-colors="Black,Grey,Navy,Olive" data-sizes="S,M,L,XL,XXL" data-fabrics="Dry-Fit Polyester,Nylon-Spandex" data-regions="Kenya:0,China:100,Turkey:220,UAE:180,Pakistan:120,Saudi Arabia:200,Europe:400,Africa:80">
+                <div class="product-img-wrap">
+                    <img src="/image/95c5fcd5351e346c4ef67bdade33584f.jpg" alt="Training Shorts">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Training &amp; Gym</div>
+                    <h4>Performance Training Shorts</h4>
+                    <p class="product-desc">Flexible training shorts with quick-dry fabric and secure pockets.</p>
+                    <div class="product-rating">★★★★★ <span>(48)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 1,600</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="training" data-colors="Black,White,Charcoal,Blue" data-sizes="S,M,L,XL,XXL" data-fabrics="Polyester,Performance Jersey" data-regions="Kenya:600,China:700">
+                <div class="product-img-wrap">
+                    <img src="/image/8eda7fee6ca5012ceee5c8e8b4beff81.jpg" alt="Training Tank Top">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Training &amp; Gym</div>
+                    <h4>Training Tank Top</h4>
+                    <p class="product-desc">Stretch performance top designed for gym and high-intensity workouts.</p>
+                    <div class="product-rating">★★★★☆ <span>(36)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 1,400</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="football" data-colors="Black,White,Red,Blue,Green" data-sizes="S,M,L,XL,XXL" data-fabrics="Performance Polyester,Mesh" data-regions="Kenya:0,China:150,Turkey:300,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:500,Africa:100">
+                <div class="product-img-wrap">
+                    <img src="/image/a859e65556d398d5ef007aef112f06fb.jpg" alt="Football Jersey">
+                    <span class="product-badge">Trending</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Football</div>
+                    <h4>Football Performance Jersey</h4>
+                    <p class="product-desc">Breathable match-day jersey built for speed and movement.</p>
+                    <div class="product-rating">★★★★★ <span>(61)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 2,200</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="basketball" data-colors="Black,White,Red,Blue,Yellow" data-sizes="S,M,L,XL,XXL" data-fabrics="Breathable Mesh,Polyester" data-regions="Kenya:0,China:150,Turkey:300,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:500,Africa:100">
+                <div class="product-img-wrap">
+                    <img src="/image/f81655baa2a9bf8eefca29a68cdf4ffd.jpg" alt="Basketball Jersey and Shorts Set">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Basketball</div>
+                    <h4>Basketball Jersey &amp; Shorts Set</h4>
+                    <p class="product-desc">Lightweight two-piece set with breathable mesh for court play.</p>
+                    <div class="product-rating">★★★★★ <span>(54)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 2,800</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="cycling" data-colors="Black,Blue,Red,Green" data-sizes="S,M,L,XL,XXL" data-fabrics="Breathable Polyester,Stretch Mesh" data-regions="Kenya:0,China:180,Turkey:350,UAE:250,Pakistan:180,Saudi Arabia:300,Europe:600,Africa:120">
+                <div class="product-img-wrap">
+                    <img src="/image/00576f51e113124d9d20e382ce69fb03.jpg" alt="Cycling Jersey">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Cycling</div>
+                    <h4>Cycling Performance Jersey</h4>
+                    <p class="product-desc">Close-fit cycling jersey with breathable panels and rear storage.</p>
+                    <div class="product-rating">★★★★☆ <span>(29)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 3,200</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="tennis" data-colors="White,Navy,Black,Green" data-sizes="S,M,L,XL,XXL" data-fabrics="Performance Polyester,Stretch Jersey" data-regions="Kenya:0,China:120,Turkey:250,UAE:180,Pakistan:130,Saudi Arabia:220,Europe:450,Africa:90">
+                <div class="product-img-wrap">
+                    <img src="/image/56745b2fbe28c7d092ef1e951e86b6cd.jpg" alt="Tennis Polo">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Tennis</div>
+                    <h4>Tennis Performance Polo</h4>
+                    <p class="product-desc">Lightweight stretch polo for court movement and comfort.</p>
+                    <div class="product-rating">★★★★☆ <span>(33)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 2,000</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="compression" data-colors="Black,Navy,Charcoal" data-sizes="S,M,L,XL,XXL" data-fabrics="Nylon-Spandex,Compression Jersey" data-regions="Kenya:200,China:600,Turkey:800,UAE:750">
+                <div class="product-img-wrap">
+                    <img src="/image/880ffed16e829399ad0597b860fcdc2c.jpg" alt="Compression Set">
+                    <span class="product-badge">Best Seller</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Compression</div>
+                    <h4>Compression Base Layer Set</h4>
+                    <p class="product-desc">Supportive compression top and leggings for training and recovery.</p>
+                    <div class="product-rating">★★★★★ <span>(58)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 3,000</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="accessories" data-colors="Black,Navy,Grey" data-sizes="One Size" data-fabrics="Durable Polyester,Water Resistant Fabric" data-regions="Kenya:0,China:150,Turkey:280,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:450,Africa:100">
+                <div class="product-img-wrap">
+                    <img src="/image/c94f043422c7b9d809e6afa6a212fbaf.jpg" alt="Training Bag">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Sports Accessories</div>
+                    <h4>Athlete Essentials Training Bag</h4>
+                    <p class="product-desc">Spacious sports bag for clothes, towels, bottles and training gear.</p>
+                    <div class="product-rating">★★★★☆ <span>(27)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 2,500</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="accessories" data-colors="Black,White,Grey" data-sizes="S,M,L,XL" data-fabrics="Cotton,Performance Polyester" data-regions="Kenya:0,China:70,Turkey:120,UAE:100,Pakistan:60,Saudi Arabia:100,Europe:200,Africa:50">
+                <div class="product-img-wrap">
+                    <img src="/image/63023f3a341c3f484f5e0b08a7c597f9.jpg" alt="Sports Socks">
+                    <span class="product-badge">Value</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Sports Accessories</div>
+                    <h4>Performance Sports Socks — 3 Pack</h4>
+                    <p class="product-desc">Breathable cushioned socks for running, training and everyday sport.</p>
+                    <div class="product-rating">★★★★★ <span>(44)</span></div>
+                    <div class="product-footer">
+                        <span class="product-price">KES 900</span>
+                        <button class="add-btn" onclick="openProductModal(this)">Add +</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>Tennis</label>
+        <div class="pagination">
+            <button class="page-btn" onclick="scrollToProducts()">‹</button>
+            <button class="page-btn active" onclick="scrollToProducts()">1</button>
+            <button class="page-btn" onclick="scrollToProducts()">2</button>
+            <button class="page-btn" onclick="scrollToProducts()">›</button>
         </div>
-
-    </div>
-
-
-    <div class="filter-group">
-
-        <h4>Price Range</h4>
-
-        <div class="price-range">
-
-            <input
-            class="price-input"
-            type="number"
-            placeholder="Min"
-            value="500">
-
-            <span>–</span>
-
-            <input
-            class="price-input"
-            type="number"
-            placeholder="Max"
-            value="5000">
-
-        </div>
-
-    </div>
-
-
-    <div class="filter-group">
-
-        <h4>Size</h4>
-
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>S</label>
-        </div>
-
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>M</label>
-        </div>
-
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>L</label>
-        </div>
-
-        <div class="filter-option">
-            <input type="checkbox">
-            <label>XL</label>
-        </div>
-
-    </div>
-
-
-    <button class="filter-apply">
-        Apply Filters
-    </button>
-
+    </main>
 </div>
-
-
-<!-- PRODUCTS AREA -->
-
-<div>
-
-    <div class="sort-bar">
-
-        <div class="result-count">
-            Showing
-            <strong id="resultCount">10</strong>
-            pieces
-        </div>
-
-        <select class="sort-select">
-
-            <option>Sort: Newest First</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Best Selling</option>
-
-        </select>
-
-    </div>
-
-
-    <div
-    class="cat-product-grid"
-    id="productGrid">
-
-
-<!-- PRODUCT 1 -->
-
-<div
-class="product-card"
-data-cat="running"
-data-colors="Black,White,Navy,Red"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Polyester,Lightweight Mesh"
-data-regions="Kenya:0,China:100,Turkey:250,UAE:180,Pakistan:120,Saudi Arabia:220,Europe:400,Africa:80">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/3e6a9a615f873c24ccda52c4ff31fbd4.jpg"
-        alt="Performance Running T-Shirt">
-
-        <span class="product-badge">
-            Best Seller
-        </span>
-
-        <button class="wishlist-btn">
-            ♡
-        </button>
-
-    </div>
-
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Running
-        </div>
-
-        <h4>
-            Performance Running T-Shirt
-        </h4>
-
-        <p class="product-desc">
-            Lightweight, breathable and sweat-wicking
-            for long runs.
-        </p>
-
-        <div class="product-rating">
-            ★★★★★
-            <span>(72)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 1,800
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 2 -->
-
-<div
-class="product-card"
-data-cat="training"
-data-colors="Black,Grey,Navy,Olive"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Dry-Fit Polyester,Nylon-Spandex"
-data-regions="Kenya:0,China:100,Turkey:220,UAE:180,Pakistan:120,Saudi Arabia:200,Europe:400,Africa:80">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/95c5fcd5351e346c4ef67bdade33584f.jpg"
-        alt="Training Shorts">
-
-        <span class="product-badge">
-            Popular
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Training & Gym
-        </div>
-
-        <h4>
-            Performance Training Shorts
-        </h4>
-
-        <p class="product-desc">
-            Flexible training shorts with quick-dry
-            fabric and secure pockets.
-        </p>
-
-        <div class="product-rating">
-            ★★★★★ <span>(48)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 1,600
-</span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">Add +</button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 3 -->
-
-<div
-class="product-card"
-data-cat="training"
-data-colors="Black,White,Charcoal,Blue"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Polyester,Performance Jersey"
-data-regions="Kenya:600,China:700,">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/8eda7fee6ca5012ceee5c8e8b4beff81.jpg" alt="Training Tank Top">
-        <span class="product-badge"> New </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Training & Gym </div>
-        <h4>Training Tank Top </h4>
-
-        <p class="product-desc">
-            Stretch performance top designed for gym
-            and high-intensity workouts. </p>
-
-        <div class="product-rating">
-            ★★★★☆ <span>(36)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 1,400
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">   Add + </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 4 -->
-
-<div
-class="product-card"
-data-cat="football"
-data-colors="Black,White,Red,Blue,Green"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Performance Polyester,Mesh"
-data-regions="Kenya:0,China:150,Turkey:300,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:500,Africa:100">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/a859e65556d398d5ef007aef112f06fb.jpg"
-        alt="Football Jersey">
-
-        <span class="product-badge">
-            Trending
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Football
-        </div>
-
-        <h4>
-            Football Performance Jersey
-        </h4>
-
-        <p class="product-desc">
-            Breathable match-day jersey built for speed
-            and movement.
-        </p>
-
-        <div class="product-rating">
-            ★★★★★ <span>(61)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 2,200
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 5 -->
-
-<div
-class="product-card"
-data-cat="basketball"
-data-colors="Black,White,Red,Blue,Yellow"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Breathable Mesh,Polyester"
-data-regions="Kenya:0,China:150,Turkey:300,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:500,Africa:100">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/f81655baa2a9bf8eefca29a68cdf4ffd.jpg"
-        alt="Basketball Jersey">
-
-        <span class="product-badge">
-            Popular
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Basketball
-        </div>
-
-        <h4>
-            Basketball Jersey & Shorts Set
-        </h4>
-
-        <p class="product-desc">
-            Lightweight two-piece set with breathable
-            mesh for court play.
-        </p>
-
-        <div class="product-rating">
-            ★★★★★ <span>(54)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 2,800
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 6 -->
-
-<div
-class="product-card"
-data-cat="cycling"
-data-colors="Black,Blue,Red,Green"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Breathable Polyester,Stretch Mesh"
-data-regions="Kenya:0,China:180,Turkey:350,UAE:250,Pakistan:180,Saudi Arabia:300,Europe:600,Africa:120">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/00576f51e113124d9d20e382ce69fb03.jpg"
-        alt="Cycling Jersey">
-
-        <span class="product-badge">
-            New
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Cycling
-        </div>
-
-        <h4>
-            Cycling Performance Jersey
-        </h4>
-
-        <p class="product-desc">
-            Close-fit cycling jersey with breathable
-            panels and rear storage.
-        </p>
-
-        <div class="product-rating">
-            ★★★★☆ <span>(29)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 3,200
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 7 -->
-
-<div
-class="product-card"
-data-cat="tennis"
-data-colors="White,Navy,Black,Green"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Performance Polyester,Stretch Jersey"
-data-regions="Kenya:0,China:120,Turkey:250,UAE:180,Pakistan:130,Saudi Arabia:220,Europe:450,Africa:90">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/56745b2fbe28c7d092ef1e951e86b6cd.jpg"
-        alt="Tennis Polo">
-
-        <span class="product-badge">
-            Popular
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Tennis
-        </div>
-
-        <h4>
-            Tennis Performance Polo
-        </h4>
-
-        <p class="product-desc">
-            Lightweight stretch polo for court movement
-            and comfort.
-        </p>
-
-        <div class="product-rating">
-            ★★★★☆ <span>(33)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 2,000
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 8 -->
-
-<div
-class="product-card"
-data-cat="compression"
-data-colors="Black,Navy,Charcoal"
-data-sizes="S,M,L,XL,XXL"
-data-fabrics="Nylon-Spandex,Compression Jersey"
-data-regions="Kenya:200,China:600,Turkey:800,UAE:750,">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/880ffed16e829399ad0597b860fcdc2c.jpg"
-        alt="Compression Set">
-
-        <span class="product-badge">
-            Best Seller
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Compression
-        </div>
-
-        <h4>
-            Compression Base Layer Set
-        </h4>
-
-        <p class="product-desc">
-            Supportive compression top and leggings for
-            training and recovery.
-        </p>
-
-        <div class="product-rating">
-            ★★★★★ <span>(58)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 3,000
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 9 -->
-
-<div
-class="product-card"
-data-cat="accessories"
-data-colors="Black,Navy,Grey"
-data-sizes="One Size"
-data-fabrics="Durable Polyester,Water Resistant Fabric"
-data-regions="Kenya:0,China:150,Turkey:280,UAE:220,Pakistan:150,Saudi Arabia:250,Europe:450,Africa:100">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/c94f043422c7b9d809e6afa6a212fbaf.jpg"
-        alt="Training Bag">
-
-        <span class="product-badge">
-            New
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Sports Accessories
-        </div>
-
-        <h4>
-            Athlete Essentials Training Bag
-        </h4>
-
-        <p class="product-desc">
-            Spacious sports bag for clothes, towels,
-            bottles and training gear.
-        </p>
-
-        <div class="product-rating">
-            ★★★★☆ <span>(27)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 2,500
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PRODUCT 10 -->
-
-<div
-class="product-card"
-data-cat="accessories"
-data-colors="Black,White,Grey"
-data-sizes="S,M,L,XL"
-data-fabrics="Cotton,Performance Polyester"
-data-regions="Kenya:0,China:70,Turkey:120,UAE:100,Pakistan:60,Saudi Arabia:100,Europe:200,Africa:50">
-
-    <div class="product-img-wrap">
-
-        <img
-        src="/image/63023f3a341c3f484f5e0b08a7c597f9.jpg"
-        alt="Sports Socks"> <span class="product-badge"> Value
-        </span>
-
-    </div>
-
-    <div class="product-info">
-
-        <div class="product-cat">
-            Sports Accessories
-        </div>
-
-        <h4>
-            Performance Sports Socks — 3 Pack
-        </h4>
-
-        <p class="product-desc">
-            Breathable cushioned socks for running,
-            training and everyday sport.
-        </p>
-
-        <div class="product-rating">
-            ★★★★★ <span>(44)</span>
-        </div>
-
-        <div class="product-footer">
-
-            <span class="product-price">
-                KES 900
-            </span>
-
-            <button
-            class="add-btn"
-            onclick="openProductModal(this)">
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-    </div>
-
-
-    <!-- PAGINATION -->
-
-    <div class="pagination">
-
-        <button class="page-btn">
-            ‹
-        </button>
-
-        <button class="page-btn active">
-            1
-        </button>
-
-        <button class="page-btn">
-            2
-        </button>
-
-        <button class="page-btn">
-            ›
-        </button>
-
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer class="footer">
-
-    &copy; 2026 Al-Noor Modest Wear, Eldoret.
-    |
-    <a href="/Homes.html">
-        Back to Home
-    </a>
-
+    &copy; 2026 Al-Noor Modest Wear, Eldoret. |
+    <a href="/Homes.html">Back to Home</a>
 </footer>
 
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="product-modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
 
-<!-- =========================
-     PRODUCT MODAL
-========================= -->
+        <div class="modal-img">
+            <img id="modalImg" src="" alt="">
+        </div>
 
-<div
-class="modal-overlay"
-id="modalOverlay"
-onclick="closeModal(event)">
+        <div class="modal-body">
+            <div class="modal-cat" id="modalCat"></div>
+            <h3 id="modalName"></h3>
+            <div class="modal-price" id="modalPrice"></div>
 
-<div class="product-modal">
+            <div class="modal-group">
+                <h4>Color</h4>
+                <div class="option-row" id="modalColors"></div>
+            </div>
 
-    <button
-    class="modal-close"
-    onclick="closeModal()">
-        ✕
-    </button>
+            <div class="modal-group">
+                <h4>Size</h4>
+                <div class="option-row" id="modalSizes"></div>
+            </div>
 
+            <div class="modal-group">
+                <h4>Fabric</h4>
+                <div class="option-row" id="modalFabrics"></div>
+            </div>
 
-    <div class="modal-img">
+            <div class="modal-group">
+                <h4>Production Region</h4>
+                <div class="option-row" id="modalRegions"></div>
+            </div>
 
-        <img
-        id="modalImg"
-        src=""
-        alt="">
+            <div class="modal-group">
+                <h4>Quantity</h4>
+                <div class="qty-control">
+                    <button onclick="changeQty(-1)">−</button>
+                    <span id="modalQty">1</span>
+                    <button onclick="changeQty(1)">+</button>
+                </div>
+            </div>
 
+            <button class="modal-add-btn" onclick="confirmAddToCart()">
+                Add to Cart — <span id="modalTotal"></span>
+            </button>
+        </div>
     </div>
-
-
-    <div class="modal-body">
-
-        <div
-        class="modal-cat"
-        id="modalCat">
-        </div>
-
-        <h3 id="modalName">
-        </h3>
-
-        <div
-        class="modal-price"
-        id="modalPrice">
-        </div>
-
-
-        <!-- COLOR -->
-
-        <div class="modal-group">
-
-            <h4>Color</h4>
-
-            <div
-            class="option-row"
-            id="modalColors">
-            </div>
-
-        </div>
-
-
-        <!-- SIZE -->
-
-        <div class="modal-group">
-
-            <h4>Size</h4>
-
-            <div
-            class="option-row"
-            id="modalSizes">
-            </div>
-
-        </div>
-
-
-        <!-- FABRIC -->
-
-        <div class="modal-group">
-
-            <h4>Fabric</h4>
-
-            <div
-            class="option-row"
-            id="modalFabrics">
-            </div>
-
-        </div>
-
-
-        <!-- REGION -->
-
-        <div class="modal-group">
-
-            <h4>
-                Production Region
-            </h4>
-
-            <div
-            class="option-row"
-            id="modalRegions">
-            </div>
-
-        </div>
-
-
-        <!-- QUANTITY -->
-
-        <div class="modal-group">
-
-            <h4>
-                Quantity
-            </h4>
-
-            <div class="qty-control">
-
-                <button
-                onclick="changeQty(-1)">
-                    −
-                </button>
-
-                <span id="modalQty">
-                    1
-                </span>
-
-                <button
-                onclick="changeQty(1)">
-                    +
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <button
-        class="modal-add-btn"
-        onclick="confirmAddToCart()">
-
-            Add to Cart —
-            <span id="modalTotal"></span>
-
-        </button>
-
-    </div>
-
 </div>
 
+<div class="toast" id="toast">
+    ✓ <span id="toastMsg">Added to cart!</span>
 </div>
 
-
-<!-- TOAST -->
-
-<div
-class="toast"
-id="toast">
-
-    ✓
-    <span id="toastMsg">
-        Added to cart!
-    </span>
-
-</div>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<!-- USE THE EXISTING CART SCRIPT. DO NOT MODIFY cart.js. -->
+<script src="cart.js"></script>
 
 <script>
-
-/* CART */
-
-let cartCount = 0;
-
 let currentProduct = {};
 
-
-/* ADD TO CART */
-
-function addToCart(name, quantity){
-
-    cartCount += quantity;
-
-    document.getElementById("cartBadge").textContent = cartCount;
-
-    document.getElementById("toastMsg").textContent =
-        name + " added to cart!";
-
-    document.getElementById("toast").classList.add("show");
-
-    setTimeout(function(){
-
-        document.getElementById("toast").classList.remove("show");
-
-    },3000);
-}
-
-
 /* MOBILE MENU */
-
-function toggleMenu(){
-
-    document
-    .getElementById("mobileMenu")
-    .classList.toggle("open");
-
+function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("open");
 }
-
 
 /* CATEGORY FILTER */
-
-function filterCat(button, category){
-
-    document
-    .querySelectorAll(".scent-pill")
-    .forEach(function(item){
-
+function filterCat(button, category) {
+    document.querySelectorAll(".scent-pill").forEach(item => {
         item.classList.remove("active");
-
     });
 
     button.classList.add("active");
 
+    document.querySelectorAll(".product-card").forEach(card => {
+        card.dataset.categoryMatch =
+            category === "all" || card.dataset.cat === category ? "yes" : "no";
+    });
 
-    let products =
-        document.querySelectorAll(".product-card");
+    applyFilters();
+}
+
+/* FILTER PRODUCTS BY CATEGORY, PRICE AND SIZE */
+function applyFilters() {
+    const min = Number(document.getElementById("minPrice").value) || 0;
+    const maxInput = document.getElementById("maxPrice").value;
+    const max = maxInput === "" ? Infinity : Number(maxInput);
+
+    const categories = [...document.querySelectorAll(
+        '.filter-option input[type="checkbox"]:not(.size-filter):checked'
+    )].map(input => input.value);
+
+    const sizes = [...document.querySelectorAll(".size-filter:checked")]
+        .map(input => input.value);
+
+    const activePill = document.querySelector(".scent-pill.active");
+    const activeCategory = activePill
+        ? activePill.getAttribute("onclick").match(/'([^']+)'\s*\)$/)?.[1] || "all"
+        : "all";
 
     let count = 0;
 
-
-    products.forEach(function(product){
-
-        if(
-            category === "all" ||
-            product.dataset.cat === category
-        ){
-
-            product.style.display = "";
-
-            count++;
-
-        }else{
-
-            product.style.display = "none";
-
-        }
-
-    });
-
-
-    document
-    .getElementById("resultCount")
-    .textContent = count;
-
-}
-
-
-/* OPEN PRODUCT MODAL */
-
-function openProductModal(button){
-
-    let card =
-        button.closest(".product-card");
-
-
-    let name =
-        card.querySelector("h4").textContent;
-
-
-    let category =
-        card.querySelector(".product-cat").textContent;
-
-
-    let image =
-        card.querySelector("img").src;
-
-
-    let priceText =
-        card.querySelector(".product-price").textContent;
-
-
-    let price =
-        parseInt(
-            priceText.replace(/[^0-9]/g,"")
+    document.querySelectorAll(".product-card").forEach(card => {
+        const price = Number(
+            card.querySelector(".product-price").textContent.replace(/[^0-9.]/g, "")
         );
 
+        const categoryMatch =
+            activeCategory === "all" || card.dataset.cat === activeCategory;
 
-    let colors =
-        card.dataset.colors
-        .split(",")
-        .map(function(item){
-            return item.trim();
-        });
+        const checkboxCategoryMatch =
+            categories.length === 0 || categories.includes(card.dataset.cat);
 
+        const sizeList = (card.dataset.sizes || "").split(",").map(s => s.trim());
+        const sizeMatch = sizes.length === 0 || sizes.some(size => sizeList.includes(size));
 
-    let sizes =
-        card.dataset.sizes
-        .split(",")
-        .map(function(item){
-            return item.trim();
-        });
+        const visible = categoryMatch && checkboxCategoryMatch &&
+                        sizeMatch && price >= min && price <= max;
 
+        card.style.display = visible ? "" : "none";
 
-    let fabrics =
-        card.dataset.fabrics
-        .split(",")
-        .map(function(item){
-            return item.trim();
-        });
+        if (visible) count++;
+    });
 
+    document.getElementById("resultCount").textContent = count;
+}
 
-    let regions =
-        card.dataset.regions
-        .split(",")
-        .map(function(item){
+/* SORT PRODUCTS */
+function sortProducts() {
+    const grid = document.getElementById("productGrid");
+    const cards = [...grid.querySelectorAll(".product-card")];
+    const sort = document.getElementById("sortSelect").value;
 
-            let parts = item.split(":");
+    cards.sort((a, b) => {
+        const priceA = Number(a.querySelector(".product-price").textContent.replace(/[^0-9.]/g, ""));
+        const priceB = Number(b.querySelector(".product-price").textContent.replace(/[^0-9.]/g, ""));
+        const nameA = a.querySelector("h4").textContent.trim();
+        const nameB = b.querySelector("h4").textContent.trim();
 
-            return {
-                name:parts[0],
-                fee:parseInt(parts[1])
-            };
+        if (sort === "low") return priceA - priceB;
+        if (sort === "high") return priceB - priceA;
+        if (sort === "name") return nameA.localeCompare(nameB);
+        return 0;
+    });
 
-        });
+    cards.forEach(card => grid.appendChild(card));
+}
 
+/* WISHLIST BUTTON */
+function toggleWishlist(button) {
+    button.textContent = button.textContent.trim() === "♡" ? "♥" : "♡";
+}
+
+/* OPEN PRODUCT MODAL */
+function openProductModal(button) {
+    const card = button.closest(".product-card");
+
+    const name = card.querySelector("h4").textContent.trim();
+    const category = card.querySelector(".product-cat").textContent.trim();
+    const image = card.querySelector("img").src;
+
+    const basePrice = Number(
+        card.querySelector(".product-price").textContent.replace(/[^0-9.]/g, "")
+    );
+
+    const parseList = value =>
+        (value || "").split(",").map(item => item.trim()).filter(Boolean);
+
+    const colors = parseList(card.dataset.colors);
+    const sizes = parseList(card.dataset.sizes);
+    const fabrics = parseList(card.dataset.fabrics);
+
+    const regions = parseList(card.dataset.regions).map(item => {
+        const parts = item.split(":");
+        return {
+            name: parts[0].trim(),
+            fee: Number(parts[1]) || 0
+        };
+    }).filter(region => region.name);
 
     currentProduct = {
-
-        name:name,
-
-        category:category,
-
-        image:image,
-
-        price:price,
-
-        color:colors[0],
-
-        size:sizes[0],
-
-        fabric:fabrics[0],
-
-        region:regions[0].name,
-
-        regionFee:regions[0].fee,
-
-        quantity:1
-
+        id: "sports-" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        name,
+        category,
+        image,
+        basePrice,
+        color: colors[0] || "",
+        size: sizes[0] || "",
+        fabric: fabrics[0] || "",
+        region: regions[0]?.name || "Kenya",
+        regionFee: regions[0]?.fee || 0,
+        quantity: 1
     };
 
+    document.getElementById("modalImg").src = image;
+    document.getElementById("modalImg").alt = name;
+    document.getElementById("modalCat").textContent = category;
+    document.getElementById("modalName").textContent = name;
 
-    document.getElementById("modalImg").src =
-        image;
-
-    document.getElementById("modalCat").textContent =
-        category;
-
-    document.getElementById("modalName").textContent =
-        name;
-
-
-    createOptions(
-        "modalColors",
-        colors,
-        "color"
-    );
-
-
-    createOptions(
-        "modalSizes",
-        sizes,
-        "size"
-    );
-
-
-    createOptions(
-        "modalFabrics",
-        fabrics,
-        "fabric"
-    );
-
-
+    createOptions("modalColors", colors, "color");
+    createOptions("modalSizes", sizes, "size");
+    createOptions("modalFabrics", fabrics, "fabric");
     createRegions(regions);
 
-
-    document.getElementById("modalQty").textContent =
-        "1";
-
-
+    document.getElementById("modalQty").textContent = "1";
     updatePrice();
 
-
-    document
-    .getElementById("modalOverlay")
-    .classList.add("show");
-
+    document.getElementById("modalOverlay").classList.add("show");
 }
 
-
-/* CREATE NORMAL OPTIONS */
-
-function createOptions(id, options, type){
-
-    let box =
-        document.getElementById(id);
-
+/* CREATE COLOR, SIZE AND FABRIC OPTIONS */
+function createOptions(id, options, type) {
+    const box = document.getElementById(id);
     box.innerHTML = "";
 
+    options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "opt-btn";
+        button.textContent = option;
 
-    options.forEach(function(option,index){
+        if (index === 0) button.classList.add("active");
 
-        let button =
-            document.createElement("button");
+        button.onclick = () => {
+            currentProduct[type] = option;
 
-
-        button.className =
-            "opt-btn";
-
-
-        if(index === 0){
+            box.querySelectorAll(".opt-btn").forEach(item => {
+                item.classList.remove("active");
+            });
 
             button.classList.add("active");
-
-        }
-
-
-        button.textContent =
-            option;
-
-
-        button.onclick =
-            function(){
-
-                currentProduct[type] =
-                    option;
-
-
-                box
-                .querySelectorAll(".opt-btn")
-                .forEach(function(btn){
-
-                    btn.classList.remove("active");
-
-                });
-
-
-                button.classList.add("active");
-
-            };
-
+        };
 
         box.appendChild(button);
-
     });
-
 }
 
-
-/* CREATE REGIONS */
-
-function createRegions(regions){
-
-    let box =
-        document.getElementById("modalRegions");
-
+/* CREATE PRODUCTION REGION OPTIONS */
+function createRegions(regions) {
+    const box = document.getElementById("modalRegions");
     box.innerHTML = "";
 
+    regions.forEach((region, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "opt-btn";
 
-    regions.forEach(function(region,index){
+        button.textContent = region.fee > 0
+            ? `${region.name} +KES ${region.fee.toLocaleString()}`
+            : region.name;
 
-        let button =
-            document.createElement("button");
+        if (index === 0) button.classList.add("active");
 
+        button.onclick = () => {
+            currentProduct.region = region.name;
+            currentProduct.regionFee = region.fee;
 
-        button.className =
-            "opt-btn";
-
-
-        if(index === 0){
+            box.querySelectorAll(".opt-btn").forEach(item => {
+                item.classList.remove("active");
+            });
 
             button.classList.add("active");
-
-        }
-
-
-        if(region.fee === 0){
-
-            button.textContent =
-                region.name;
-
-        }else{
-
-            button.textContent =
-                region.name +
-                " +KES " +
-                region.fee.toLocaleString();
-
-        }
-
-
-        button.onclick =
-            function(){
-
-                currentProduct.region =
-                    region.name;
-
-                currentProduct.regionFee =
-                    region.fee;
-
-
-                box
-                .querySelectorAll(".opt-btn")
-                .forEach(function(btn){
-
-                    btn.classList.remove("active");
-
-                });
-
-
-                button.classList.add("active");
-
-
-                updatePrice();
-
-            };
-
+            updatePrice();
+        };
 
         box.appendChild(button);
-
     });
-
 }
-
 
 /* UPDATE PRICE */
-
-function updatePrice(){
-
-    let unitPrice =
-        currentProduct.price +
-        currentProduct.regionFee;
-
-
-    let total =
-        unitPrice *
-        currentProduct.quantity;
-
+function updatePrice() {
+    const unitPrice = currentProduct.basePrice + currentProduct.regionFee;
+    const total = unitPrice * currentProduct.quantity;
 
     document.getElementById("modalPrice").textContent =
-        "KES " +
-        unitPrice.toLocaleString();
-
+        "KES " + unitPrice.toLocaleString();
 
     document.getElementById("modalTotal").textContent =
-        "KES " +
-        total.toLocaleString();
-
+        "KES " + total.toLocaleString();
 }
-
 
 /* CHANGE QUANTITY */
-
-function changeQty(amount){
-
-    currentProduct.quantity += amount;
-
-
-    if(currentProduct.quantity < 1){
-
-        currentProduct.quantity = 1;
-
-    }
-
-
-    document.getElementById("modalQty").textContent =
-        currentProduct.quantity;
-
-
+function changeQty(amount) {
+    currentProduct.quantity = Math.max(1, currentProduct.quantity + amount);
+    document.getElementById("modalQty").textContent = currentProduct.quantity;
     updatePrice();
-
 }
 
+/* ADD PRODUCT USING THE EXISTING cart.js FUNCTION */
+function confirmAddToCart() {
+    if (!currentProduct.name) return;
 
-/* CONFIRM CART */
+    if (typeof window.addToCart !== "function") {
+        alert("Cart script not loaded. Check that cart.js is in the same folder as Sports.html.");
+        return;
+    }
 
-function confirmAddToCart(){
+    const product = {
+        id: currentProduct.id,
+        name: currentProduct.name,
+        category: currentProduct.category,
+        image: currentProduct.image,
+        price: currentProduct.basePrice + currentProduct.regionFee,
+        quantity: currentProduct.quantity,
+        options: {
+            color: currentProduct.color,
+            size: currentProduct.size,
+            fabric: currentProduct.fabric,
+            region: currentProduct.region
+        }
+    };
 
-    let details =
-        currentProduct.name +
-        " - " +
-        currentProduct.region;
-
-
-    addToCart(
-        details,
-        currentProduct.quantity
-    );
-
+    // The existing cart.js saves this product in localStorage.
+    window.addToCart(product);
 
     closeModal();
 
-}
+    document.getElementById("toastMsg").textContent =
+        currentProduct.name + " added to cart!";
 
+    document.getElementById("toast").classList.add("show");
+
+    setTimeout(() => {
+        document.getElementById("toast").classList.remove("show");
+    }, 3000);
+}
 
 /* CLOSE MODAL */
-
-function closeModal(event){
-
-    if(
-        event &&
-        event.target !== event.currentTarget
-    ){
-
-        return;
-
-    }
-
-
-    document
-    .getElementById("modalOverlay")
-    .classList.remove("show");
-
+function closeModal(event) {
+    if (event && event.target !== event.currentTarget) return;
+    document.getElementById("modalOverlay").classList.remove("show");
 }
 
+/* SCROLL TO PRODUCTS */
+function scrollToProducts() {
+    document.getElementById("productGrid").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+/* CART BADGE IS MANAGED BY cart.js */
+document.addEventListener("DOMContentLoaded", function () {
+    if (typeof window.updateCartBadge === "function") {
+        window.updateCartBadge();
+    }
+});
 </script>
 
 </body>
 </html>
-```
