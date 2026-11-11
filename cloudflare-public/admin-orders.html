@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Orders – Al-Noor Modest Wear</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f8f5ef;
+    color:#222;
+}
+
+header{
+    background:#111;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:1200px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.order{
+    background:#fff;
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px #0001;
+}
+
+.order-header{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+    border-bottom:1px solid #ddd;
+    padding-bottom:15px;
+    margin-bottom:15px;
+}
+
+.order-header h2{
+    margin:0;
+}
+
+.status{
+    padding:7px 12px;
+    border-radius:5px;
+    background:#eee;
+    font-weight:bold;
+}
+
+.customer-info p{
+    margin:6px 0;
+}
+
+.items{
+    margin-top:15px;
+}
+
+.item{
+    padding:10px;
+    background:#f8f5ef;
+    margin-bottom:8px;
+    border-radius:5px;
+}
+
+.order-total{
+    font-size:20px;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.status-controls{
+    margin-top:20px;
+}
+
+.status-controls select{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:15px;
+}
+
+.empty{
+    background:#fff;
+    padding:50px;
+    text-align:center;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Al-Noor Modest Wear — Orders</h1>
+</header>
+
+<div class="container">
+
+    <div id="ordersContainer">
+        <p>Loading orders...</p>
+    </div>
+
+</div>
+
+<script>
+
+const SUPABASE_URL =
+    "https://tcoobzomueszhvmtxeta.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_1kqxZHt_moeKQigTvBb1Xw_IpBDimug";
+
+
+// ===============================
+// ADMIN LOGIN CHECK
+// ===============================
+
+const adminToken =
+    localStorage.getItem("adminAccessToken");
+
+if (!adminToken) {
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+// ===============================
+// LOAD ORDERS
+// ===============================
+
+async function loadOrders(){
+
+    const container =
+        document.getElementById("ordersContainer");
+
+    try{
+
+        const response = await fetch(
+            SUPABASE_URL +
+            "/rest/v1/orders?select=*&order=created_at.desc",
+            {
+                headers:{
+                    "apikey":SUPABASE_KEY,
+                    "Authorization":"Bearer " + adminToken
+                }
+            }
+        );
+
+        if(!response.ok){
+
+            const error =
+                await response.text();
+
+            console.error(
+                "Supabase error:",
+                error
+            );
+
+            container.innerHTML =
+                "<div class='empty'>Could not load orders.</div>";
+
+            return;
+        }
+
+        const orders =
+            await response.json();
+
+        if(orders.length === 0){
+
+            container.innerHTML =
+                "<div class='empty'>No orders yet.</div>";
+
+            return;
+        }
+
+        container.innerHTML =
+            orders.map(order => {
+
+                let items = [];
+
+                try{
+
+                    items =
+                        typeof order.items === "string"
+                        ? JSON.parse(order.items)
+                        : order.items;
+
+                }catch(error){
+
+                    items = [];
+
+                }
+
+                return `
+
+                <div class="order">
+
+                    <div class="order-header">
+
+                        <h2>
+                            Order #${order.id}
+                        </h2>
+
+                        <span class="status">
+                            ${order.status || "pending"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="customer-info">
+
+                        <p>
+                            <strong>Name:</strong>
+                            ${order.customer_name}
+                        </p>
+
+                        <p>
+                            <strong>Phone:</strong>
+                            ${order.phone}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            ${order.email}
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            ${order.location}
+                        </p>
+
+                        <p>
+                            <strong>Address:</strong>
+                            ${order.address || "Not provided"}
+                        </p>
+
+                        <p>
+                            <strong>Date:</strong>
+                            ${new Date(order.created_at).toLocaleString()}
+                        </p>
+
+                    </div>
+
+
+                    <div class="items">
+
+                        <h3>Products</h3>
+
+                        ${
+                            items.map(item => `
+
+                                <div class="item">
+
+                                    ${item.name}
+                                    × ${item.quantity}
+
+                                    — KES ${
+                                        (
+                                            Number(item.price) *
+                                            Number(item.quantity)
+                                        ).toLocaleString()
+                                    }
+
+                                </div>
+
+                            `).join("")
+                        }
+
+                    </div>
+
+
+                    <div class="order-total">
+
+                        Total:
+                        KES ${Number(order.total).toLocaleString()}
+
+                    </div>
+
+
+                    <div class="status-controls">
+
+                        <label>
+                            <strong>Update status:</strong>
+                        </label>
+
+                        <select
+                            onchange="updateStatus(
+                                ${order.id},
+                                this.value
+                            )"
+                        >
+
+                            <option
+                                value="pending"
+                                ${order.status === "pending" ? "selected" : ""}
+                            >
+                                Pending
+                            </option>
+
+                            <option
+                                value="confirmed"
+                                ${order.status === "confirmed" ? "selected" : ""}
+                            >
+                                Confirmed
+                            </option>
+
+                            <option
+                                value="delivered"
+                                ${order.status === "delivered" ? "selected" : ""}
+                            >
+                                Delivered
+                            </option>
+
+                            <option
+                                value="cancelled"
+                                ${order.status === "cancelled" ? "selected" : ""}
+                            >
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }).join("");
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML =
+            "<div class='empty'>Connection error.</div>";
+
+    }
+
+}
+
+
+// ===============================
+// UPDATE ORDER STATUS
+// ===============================
+
+async function updateStatus(
+    orderId,
+    newStatus
+){
+
+    try{
+
+        const response = await fetch(
+
+            SUPABASE_URL +
+            "/rest/v1/orders?id=eq." +
+            orderId,
+
+            {
+                method:"PATCH",
+
+                headers:{
+
+                    "Content-Type":
+                        "application/json",
+
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " + adminToken
+
+                },
+
+                body:JSON.stringify({
+
+                    status:newStatus
+
+                })
+
+            }
+
+        );
+
+
+        if(!response.ok){
+
+            const error =
+                await response.text();
+
+            console.error(
+                "Status update error:",
+                error
+            );
+
+            alert(
+                "Could not update order status."
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Order status updated."
+        );
+
+
+        loadOrders();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Connection error."
+        );
+
+    }
+
+}
+
+8
+
+if(adminToken){
+
+    loadOrders();
+
+}
+
+</script>
+
+</body>
+</html>
